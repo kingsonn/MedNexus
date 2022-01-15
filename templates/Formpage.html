@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Prediction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600&family=Orbitron:wght@500&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body{
+            margin: 0px;
+            background-color: black;
+            
+        }
+        .navbar{
+            display: flex;
+            background-color: #020c12bd;
+            margin: 0px;
+            padding: 6px;
+        }
+        #logo{
+            width: 50px;
+            
+        }
+        .navbar ul{
+            display: flex;
+            margin: 0px 0px;
+        }
+        .navbar ul li{
+            text-decoration: none;
+            margin: 2px 15px;
+            list-style: none;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .navbar div{
+            margin: 0px 0px;
+        }
+        .navbar div h1{
+            margin: 0px 0px;
+            margin-right: 0px;
+            font-size: 50px;
+            font-family: 'Orbitron', sans-serif;
+            color:white;
+            padding-left: 10px;
+        }
+        .info{
+            margin: 0px 0px;
+            margin-right: 0px;
+            font-size: 60px;
+            font-family: 'Cinzel', serif;
+            color:white;
+            padding: 10px 10px;
+        }
+        .navbar::before{
+            background: url('/static/AdobeStock_328915018.jpeg') ;
+            content: "";
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        #imgg{
+            width: 100%;
+        }
+        .container1, .container2{
+            display: flex;
+
+            
+        }
+        .card{
+            border: solid black;
+            width: 120%;
+            margin: 13px;
+            border-radius: 8px;
+            font-size: 28px;
+            background-color: #020c12bd;
+            color: white;
+            padding: 10px;
+
+        }
+     
+        .infoo{
+            padding: 10px;
+            display: flex;
+
+        }
+        .infoo img{
+            width: 100%;
+        }
+        .infotext{
+            width:100%
+        }
+        .infopic{
+            width: 25%;
+        }
+        .container1::before{
+            background: url('/static/AdobeStock_328915018.jpeg') fixed;
+            content: "";
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        .cardtitle{
+            margin-top: 5px;
+            font-size: 35px;
+            padding-left: 10px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .container1 a, .container2 a{
+            text-decoration: none;
+            color: white;
+        }
+        .forminp div{
+            padding: 10px 10px;
+        }
+        .submitbtn{
+            
+            font-size: 40px;
+            border-radius: 10px;
+            background-color: #1380c169;
+            color: white;
+            padding: 5px 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <!-- <div class="logo">
+            <img id="logo" src="/Static/symbol-26228_1280.png" alt="">
+        </div> -->
+        <div>
+          <a style="text-decoration: none;" href="/"><h1>MedNexus: Solutions for healthcare</h1></a> 
+       </div>
+        <!-- <div>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Diagnosis</li>
+                <li>Consultation</li>
+                <li>Contact</li>
+            </ul>
+        </div> -->
+    </nav>
+    <div class="infoo">
+        <div class="infopic">
+            <img src="/static/boy-2027768.png" alt="">
+        </div>
+        
+        <div class="infotext">
+            <div style="padding-bottom: 0px;" class="info"> <u>Health Insurance Prediction</u> </div>
+            <div style="padding-top: 0px; font-size: 40px;" class="info">Predict Your Health Insurance Cost With Basic Information</div>
+        </div>
+    </div>
+   
+    <!-- <img id="imgg" src="/Static/AdobeStock_328915018.jpeg" alt=""> -->
+    <div style="background-image: url(/static/AdobeStock_328915018.jpeg); background-image: fixed;">
+        <div class="container1">
+            <div style="width: 170%;" class="card">
+                <div class="cardtitle">
+                    <span>Fill the form to check your health costs</span>
+                </div>
+                <hr>
+                <div>
+                   
+                    <form class="forminp" action="/Formpage" method="POST">
+                      <div class="forminp">
+                      <p>What's your Name ?</p>
+                        <input class="form-control" type="text" placeholder="Enter your Name..." />
+                        <!-- <label for="inputName">Name</label> -->
+                      </div>
+                      
+                         <div>
+                          <p>Any smoker from your family?</p>
+                          <input    type="radio" style="border-radius:20px" value="2" name="q2">
+                          <label> Yes </label>
+                        
+                        
+                          <input    type="radio" style="border-radius:20px" value="1" name="q2">
+                          <label>No</label>
+                        </div>
+                      
+                      
+                        
+                          <div >
+                          <p>How Many Children Do You Have in Your Family?</p>
+                          <input    type="radio" style="border-radius:20px" value="0" name="q3">
+                          <label>0</label>
+                        
+                          <input    type="radio" style="border-radius:20px" value="1" name="q3">
+                          <label>1</label>
+                       
+                          <input    type="radio" style="border-radius:20px" value="2" name="q3">
+                          <label>2</label>
+                        
+                          <input    type="radio" style="border-radius:20px" value="3" name="q3">
+                          <label>3</label>
+                        
+                          <input    type="radio" style="border-radius:20px" value="4" name="q3">
+                          <label>4</label>
+                        </div>
+                        
+                        <div >
+                          <p>What's your Age ?</p>
+                          <input  type="text" name="q4" >
+                        </div>
+                     
+                        <div>
+                          <p>Enter your BMI (Body Mass Index)</p>
+                            <input  type="text" name="q5">
+                        </div>
+                        
+                          
+                          <div  >
+                              <label><br />Gender</label>
+                              <input    type="radio" style="border-radius:20px" value="2" name="q6">
+                              <label>Male</label>
+                            
+                              <input    type="radio" style="border-radius:20px" value="1" name="q6">
+                              <label>Female</label>
+                            </div>
+                          
+                          
+                          
+                          <div  >
+                              <p>Choose Your Region </p>
+                              <input    type="radio" style="border-radius:20px" value="2" name="q7">
+                              <label>North</label>
+                          
+                              <input    type="radio" style="border-radius:20px" value="1" name="q7">
+                              <label>South</label>
+                            
+                              <input    type="radio" style="border-radius:20px" value="1" name="q7">
+                              <label>East</label>
+                            
+                              <input    type="radio" style="border-radius:20px" value="1" name="q7">
+                              <label>West</label>
+                            </div>
+                      <div>
+                      <a href="Predictions.html"><button class="submitbtn" type="submit">Get
+                        Calculated</button></a>
+                      </div>
+                 </form>
+                </div>
+                </div>
+            
+            <div class="card">
+                <div class="cardtitle">
+                <span>Reducing Health Insurance Premium</span>
+                </div>
+                <hr>
+                <div>
+                  One of the most pressing issues that have been plaguing Indians in the last few years is medical inflation. With the cost of seeking premium healthcare rising steadily, people belonging to the low and middle-income groups are finding it difficult to keep up with the expenses. 
+                   <br> <br>10 Ways to Lower your Health Insurance Premium:
+                    <ul>
+                        <li>Purchase the Health Insurance Policy at an Early Age</li>
+                        <li>Go for a Policy with Less Sum Insured</li>
+                        <li>Seek Long-Term Healthcare Insurance Policies</li>
+                        <li>Opt for Copay and Deductibles</li>
+                        <li>Opt for Top-Up Plans</li>
+                        <li>Balance Your Health Insurance Plans</li>
+                        <li>Buy the Health Insurance Policy for the Right Zone</li>
+                        <li>Seek Long-Term Healthcare Insurance Policies</li>
+                        <li>Purchase a Policy for Your Parents Before They Reach 60 Years of Age</li>
+                        <li>Compare the Affordability of Plans Online</li>
+                    </ul>
+                </div>
+           
+        </div>
+    </div>
+    <div id="copyright" style="background-color: black; color: white; text-align: center;">
+        Copyright &copy; Hanson Braganza. All rights reserved!
+    </div>
+</body>
+</html>

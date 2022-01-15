@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedNexus|Mental Health</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600&family=Orbitron:wght@500&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body{
+            margin: 0px;
+            background-color: black;
+            
+        }
+        .navbar{
+            display: flex;
+            background-color: #020c12bd;
+            margin: 0px;
+            padding: 6px;
+        }
+        #logo{
+            width: 50px;
+            
+        }
+        .navbar ul{
+            display: flex;
+            margin: 0px 0px;
+        }
+        .navbar ul li{
+            text-decoration: none;
+            margin: 2px 15px;
+            list-style: none;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .navbar div{
+            margin: 0px 0px;
+        }
+        .navbar div h1{
+            margin: 0px 0px;
+            margin-right: 0px;
+            font-size: 50px;
+            font-family: 'Orbitron', sans-serif;
+            color:white;
+            padding-left: 10px;
+        }
+        .info{
+            margin: 0px 0px;
+            margin-right: 0px;
+            font-size: 60px;
+            font-family: 'Cinzel', serif;
+            color:white;
+            padding: 10px 10px;
+        }
+        .navbar::before{
+            background: url('/static/AdobeStock_328915018.jpeg') ;
+            content: "";
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        #imgg{
+            width: 100%;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            
+        }
+        .card{
+            border: solid black;
+            width: 60%;
+            margin: 13px 20%;
+            border-radius: 8px;
+            font-size: 28px;
+            background-color: #020c12bd;
+            color: white;
+
+        }
+        .card:hover{
+            background-color: #04304bbd;
+            cursor: pointer;
+        }
+        .infoo{
+            padding: 10px;
+            display: flex;
+
+        }
+        .infoo img{
+            width: 100%;
+        }
+        .infotext{
+            width:100%
+        }
+        .infopic{
+            width: 25%;
+        }
+        .container::before{
+            background: url('/static/AdobeStock_328915018.jpeg') fixed;
+            content: "";
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        .cardtitle{
+          text-align: center;
+            font-size: 50px;
+            padding-left: 10px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .cardinfo{
+            padding: 10px;
+        }
+        .container a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <!-- <div class="logo">
+            <img id="logo" src="/Static/symbol-26228_1280.png" alt="">
+        </div> -->
+        <div>
+            <a style="text-decoration: none;" href="/"><h1>MedNexus: Solutions for healthcare</h1></a> 
+         </div>
+        <!-- <div>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Diagnosis</li>
+                <li>Consultation</li>
+                <li>Contact</li>
+            </ul>
+        </div> -->
+    </nav>
+    <div class="infoo">
+        <div class="infopic">
+            <img src="/static/boy-2027768.png" alt="">
+        </div>
+        
+        <div class="infotext">
+            <div style="padding-bottom: 0px;" class="info">Mental Health</div>
+            <div style="padding-top: 0px; font-size: 40px;" class="info">Improve your mood and relieve stress</div>
+        </div>
+    </div>
+   
+    <!-- <img id="imgg" src="/Static/AdobeStock_328915018.jpeg" alt=""> -->
+    <div style="background-image: url(/static/AdobeStock_328915018.jpeg); background-image: fixed;">
+        <div class="container">
+           <a href="/pet"> 
+             <div class="card">
+                <div class="cardtitle">
+                    <span>Pet Therepy</span>
+                </div>
+                <hr>
+                <div class="cardinfo">
+                  <div>
+                    <img width="100%" src="/static/-1_orig.jpg" alt="">
+                  </div>
+                    Look at these cute pictures of pets for improving your mood. This will decrease levels of cortisol (a stress-related hormone) and lower blood pressure in your body. 
+                </div>
+              </div>
+            </a>
+            <a href="/journal"> 
+              <div class="card">
+                 <div class="cardtitle">
+                     <span>Journal</span>
+                 </div>
+                 <hr>
+                 <div class="cardinfo">
+                  <div>
+                    <img width="100%" src="/static/coffee-2847957_1280.jpg" alt="">
+                  </div>
+                  It is recommended than an effective way to rid oneself of negative thoughts is writing about a stressfull memory and deleting them. The physical act of gettting rid of thoughts allows the mind to move on to other things.
+                 </div>
+               </div>
+             </a>
+             <a href="/art"> 
+              <div class="card">
+                 <div class="cardtitle">
+                     <span>Art Therepy</span>
+                 </div>
+                 <hr>
+                 <div class="cardinfo">
+                  <div>
+                    <img width="100%" src="/static/painting-911804_1280.jpg" alt="">
+                  </div>
+                  Doodle on the canvas provided to relieve stress. Art therapy is a technique rooted in the idea that creative expression can foster healing and mental well-being. The goal of art therapy is to utilize the creative process to help people explore self-expression and, in doing so, find new ways to gain personal insight and develop new coping skills.
+                 </div>
+               </div>
+             </a>
+            
+            
+        
+        </div>
+    </div>
+    <div id="copyright" style="background-color: black; color: white; text-align: center;">
+        Copyright &copy; Hanson Braganza. All rights reserved!
+    </div>
+  
+</html>
