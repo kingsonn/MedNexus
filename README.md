@@ -14,7 +14,7 @@
 </ol>
 
 <h6>To run the app on local device</h6>
-'''
-pip install -r requirements.txt
-python app.py
-'''
+
+`pip install -r requirements.txt`
+`python app.py`
+
