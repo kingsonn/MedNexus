@@ -1,8 +1,15 @@
 <H1>MedNexus</H1>
-<hr>
 <h2>Links</h2>
 <P>WeB App Link: https://mexus.azurewebsites.net/</P>
 <p>Youtube Demo Link: https://youtu.be/1sNmWh5ETcI</p>
+Landing Page
+
+
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/91758613/149889632-a8990b35-bcd1-40af-93bd-d7bb41ffd690.gif)
+
+
+
 <h2>Features of MedNexus</h2>
 <ol>
     <li>Consultation</li>
