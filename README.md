@@ -11,6 +11,14 @@ Landing Page
 
 
 <h2>Features of MedNexus</h2>
+Landing Page
+
+
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/91758613/149889632-a8990b35-bcd1-40af-93bd-d7bb41ffd690.gif)
+
+
+
 <ol>
     <li>Consultation</li>
     <li>Symptom checking</li>
