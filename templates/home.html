@@ -7,43 +7,38 @@
     <title>MedNexus</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600&family=Orbitron:wght@500&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
     <style>
         body{
             margin: 0px;
             background-color: black;
+            background: url(/static/mjh-shikder-eDQo2u-Gzyk-unsplash.jpg);
             
         }
+        .navbar div a h1{
+            font-size:xxx-large;
+            font-family: 'Montserrat';
+            font-weight: normal;
+            color: rgb(243, 234, 234);
+            text-align: center;
+            margin:  0;
+
+            text-align: center;
+          }
+          
         .navbar{
-            display: flex;
+            
             background-color: #020c12bd;
             margin: 0px;
             padding: 6px;
+            position: fixed;
+            width: 100%;
         }
-        #logo{
-            width: 50px;
-            
-        }
-        .navbar ul{
-            display: flex;
-            margin: 0px 0px;
-        }
-        .navbar ul li{
-            text-decoration: none;
-            margin: 2px 15px;
-            list-style: none;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
+       
+        
         .navbar div{
             margin: 0px 0px;
-        }
-        .navbar div h1{
-            margin: 0px 0px;
-            margin-right: 0px;
-            font-size: 50px;
-            font-family: 'Orbitron', sans-serif;
-            color:white;
-            padding-left: 10px;
         }
         .info{
             margin: 0px 0px;
@@ -98,7 +93,7 @@
             width:100%
         }
         .infopic{
-            width: 25%;
+            width: 15%;
         }
         .container1::before{
             background: url('/static/AdobeStock_328915018.jpeg') fixed;
@@ -123,26 +118,126 @@
             text-decoration: none;
             color: white;
         }
+        #page-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+          
+          #title {
+            color: #f6f6f6;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+          }
+          
+          #btn {
+              margin: 9px;
+            position: fixed;
+            z-index: 5;
+            top: 15px;
+            left: 15px;
+            cursor: pointer;
+            transition: left 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+          }
+          #btn div {
+            width: 35px;
+            height: 2px;
+            margin-bottom: 8px;
+            background-color: #00DFFC;
+            transition: transform 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91), opacity 500ms, background-color 250ms;
+          }
+          
+          #btn.active {
+            left: 230px;
+          }
+          #btn.active div {
+            background-color: #343838;
+          }
+          #btn.active #top {
+            transform: translateY(10px) rotate(-135deg);
+          }
+          #btn.active #middle {
+            opacity: 0;
+            transform: rotate(135deg);
+          }
+          #btn.active #bottom {
+            transform: translateY(-10px) rotate(-45deg);
+          }
+          
+          #box {
+            position: fixed;
+            z-index: 4;
+            overflow: auto;
+            top: 0px;
+            left: -275px;
+            width: 275px;
+            opacity: 0;
+            padding: 20px 0px;
+            height: 100%;
+            background-color: #f6f6f6;
+            color: #343838;
+            transition: all 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+          }
+          
+          #box.active {
+            left: 0px;
+            opacity: 1;
+          }
+          
+          #items {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          #items .item {
+            position: relative;
+            cursor: pointer;
+            font-size: 2em;
+            padding: 15px 30px;
+            transition: all 250ms;
+          }
+          #items .item:hover {
+            padding: 15px 45px;
+            background-color: rgba(52, 56, 56, 0.2);
+          }
+          
+          #btn, #btn * {
+            will-change: transform;
+          }
+          
+          #box {
+            will-change: transform, opacity;
+          }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <!-- <div class="logo">
-            <img id="logo" src="/Static/symbol-26228_1280.png" alt="">
-        </div> -->
+
+        <div id="btn">
+            <div id='top'></div>
+            <div id='middle'></div>
+            <div id='bottom'></div>
+        </div>
+        <div id="box">
+            <div id="items">
+                <div class="item">Item 1</div>
+                <div class="item">Item 2</div>
+                <div class="item">Item 3</div>
+                <div class="item">Item 4</div>
+                <div class="item">Item 5</div>
+            </div>
+        </div>
         <div>
-            <a style="text-decoration: none;" href="/"><h1>MedNexus: Solutions for healthcare</h1></a> 
+            <a style="text-decoration: none;" href="/"><h1>MedNexus | Home</h1></a> 
          </div>
-        <!-- <div>
-            <ul>
-                <li>Home</li>
-                <li>About</li>
-                <li>Diagnosis</li>
-                <li>Consultation</li>
-                <li>Contact</li>
-            </ul>
-        </div> -->
+      
     </nav>
+    <br><br><br>
     <div class="infoo">
         <div class="infopic">
             <img src="/static/boy-2027768.png" alt="">
@@ -151,6 +246,30 @@
         <div class="infotext">
             <div style="padding-bottom: 0px;" class="info">Welcome!!</div>
             <div style="padding-top: 0px; font-size: 40px;" class="info">Use the power of AI for quick consultation and predictive diagnosis</div>
+            <div id="warning">
+                <h1 style="font-weight:500;">Speech Recognition Speech SDK not found (microsoft.cognitiveservices.speech.sdk.bundle.js missing).</h1>
+              </div>
+              
+              <div id="content" style="display:none">
+                <table width="100%">
+                  <tr>
+                    <td style="display: none;" align="right"><a style="display: none;" href="https://docs.microsoft.com/azure/cognitive-services/speech-service/get-started" target="_blank">Subscription</a>:</td>
+                    <td><input style="display: none;" id="subscriptionKey" type="text" size="40" value="5795218c08664bc795cd964d7bfdf5a4"></td>
+                  </tr>
+                  <tr>
+                    <td style="display: none;" align="right">Region</td>
+                    <td><input style="display: none;" id="serviceRegion" type="text" size="40" value="eastus"></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td><button  style="font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; "    id="startRecognizeOnceAsyncButton">Dr. Express 🔊</button></td>
+                  </tr>
+                  <tr>
+                    <td style="display: none;" align="right" valign="top">Results</td>
+                    <td><textarea style="display: none;" id="phraseDiv" style="display: inline-block;width:500px;height:200px"></textarea></td>
+                  </tr>
+                </table>
+              </div>
         </div>
     </div>
    
@@ -266,5 +385,184 @@
     <div id="copyright" style="background-color: black; color: white; text-align: center;">
         Copyright &copy; Hanson Braganza. All rights reserved!
     </div>
-  
+    <script>
+        const sidebarBox = document.querySelector('#box'),
+        sidebarBtn = document.querySelector('#btn'),
+        pageWrapper = document.querySelector('#page-wrapper');
+        
+        sidebarBtn.addEventListener('click', event => {
+          sidebarBtn.classList.toggle('active');
+          sidebarBox.classList.toggle('active');
+        });
+        
+        
+        
+        window.addEventListener('keydown', event => {
+        
+          if (sidebarBox.classList.contains('active') && event.keyCode === 27) {
+            sidebarBtn.classList.remove('active');
+            sidebarBox.classList.remove('active');
+          }
+        });
+       </script>
+       <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
+       <!-- </speechsdkref> -->
+     
+       <!-- <quickstartcode> -->
+       <!-- Speech SDK USAGE -->
+       <script>
+         // status fields and start button in UI
+         var phraseDiv;
+         var startRecognizeOnceAsyncButton;
+     
+         // subscription key and region for speech services.
+         var subscriptionKey, serviceRegion;
+         var SpeechSDK;
+         var recognizer;
+         const url = "https://australiaeast.api.cognitive.microsoft.com/luis/prediction/v3.0/apps/bf3d2786-29d7-4bcc-a58c-25a527f638f4/slots/staging/predict?verbose=true&show-all-intents=true&log=true&subscription-key=12a586f3f80647eab101bbc54f095e1a&query=";
+         var HttpClient = function() {
+             this.get = function(aUrl, aCallback) {
+                 var anHttpRequest = new XMLHttpRequest();
+                 anHttpRequest.onreadystatechange = function() { 
+                     if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                         aCallback(anHttpRequest.responseText);
+                 }
+         
+                 anHttpRequest.open( "GET", aUrl, true );            
+                 anHttpRequest.send( null );
+             }
+         }
+         var client = new HttpClient();
+             client.get("https://australiaeast.api.cognitive.microsoft.com/luis/prediction/v3.0/apps/bf3d2786-29d7-4bcc-a58c-25a527f638f4/slots/staging/predict?verbose=true&show-all-intents=true&log=true&subscription-key=12a586f3f80647eab101bbc54f095e1a&query=doctor%20diagnosis", function(response) {
+                 return JSON.parse(response).prediction.topIntent
+             });
+         document.addEventListener("DOMContentLoaded", function () {
+           startRecognizeOnceAsyncButton = document.getElementById("startRecognizeOnceAsyncButton");
+           subscriptionKey = document.getElementById("subscriptionKey");
+           serviceRegion = document.getElementById("serviceRegion");
+           phraseDiv = document.getElementById("phraseDiv");
+     
+           startRecognizeOnceAsyncButton.addEventListener("click", function () {
+             startRecognizeOnceAsyncButton.disabled = true;
+             phraseDiv.innerHTML = "";
+     
+             if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
+               alert("Please enter your Microsoft Cognitive Services Speech subscription key!");
+               return;
+             }
+             speak()
+             setTimeout(rec, 5000);
+
+            function rec(){
+                var speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
+             
+                speechConfig.speechRecognitionLanguage = "en-US";
+                var audioConfig  = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
+                recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
+                setTimeout( speakagain, 3000)
+                recognizer.recognizeOnceAsync(
+                    
+                  function (result) {
+                    startRecognizeOnceAsyncButton.disabled = false;
+                    phraseDiv.innerHTML += result.text;
+                    window.console.log(result);
+                    console.log(url+result.privText);
+                    
+                    setTimeout(change, 5000)
+                    function change(){
+                        client.get(url+result.privText, function(response) {
+                            if(JSON.parse(response).prediction.topIntent === "accessWebsite") {
+                                window.location.href = ("http://127.0.0.1:5000/diagnosis")
+                            }
+                            if(JSON.parse(response).prediction.topIntent === "accessDoc") {
+                                window.location.href = ("http://127.0.0.1:5000/mental")
+                            }
+                            if(JSON.parse(response).prediction.topIntent === "accessconsult") {
+                                window.location.href = ("http://127.0.0.1:5000/consultation")
+                            }
+                            if(JSON.parse(response).prediction.topIntent === "emotiondetect") {
+                                window.location.href = ("http://127.0.0.1:5000/emotion")
+                            }
+                            if(JSON.parse(response).prediction.topIntent === "goBack") {
+                                window.location.href = ("http://127.0.0.1:5000/")
+                            }
+                            if(JSON.parse(response).prediction.topIntent === "heartdisease") {
+                                window.location.href = ("http://127.0.0.1:5000/heartdisease")
+                            }
+                            if(JSON.parse(response).prediction.topIntent === "skincancer") {
+                                window.location.href = ("http://127.0.0.1:5000/skincancer")
+                            }
+            
+                        });
+                    }
+                    recognizer.close();
+                    recognizer = undefined;
+                    
+                  },
+                  function (err) {
+                    startRecognizeOnceAsyncButton.disabled = false;
+                    phraseDiv.innerHTML += err;
+                    window.console.log(err);
+        
+                    recognizer.close();
+                    recognizer = undefined;
+                  });
+            }
+           });
+           function speak(){
+            var speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
+            synthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig);
+            speechConfig;
+            let inputText = "Hello, Dr. Medico here, How can I help you?";
+        synthesizer.speakTextAsync(
+      inputText,
+      function (result) {
+        startSpeakTextAsyncButton.disabled = false;
+        
+        window.console.log(result);
+        synthesizer.close();
+        synthesizer = undefined;
+      },
+      function (err) {
+        startSpeakTextAsyncButton.disabled = false;
+        yy
+        window.console.log(err);
+
+        synthesizer.close();
+        synthesizer = undefined;
+    });
+           }
+           function speakagain(){
+            var speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
+            synthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig);
+            speechConfig;
+            let inputText = "Yes, as you wish";
+        synthesizer.speakTextAsync(
+      inputText,
+      function (result) {
+        startSpeakTextAsyncButton.disabled = false;
+        
+        window.console.log(result);
+        synthesizer.close();
+        synthesizer = undefined;
+      },
+      function (err) {
+        startSpeakTextAsyncButton.disabled = false;
+        yy
+        window.console.log(err);
+
+        synthesizer.close();
+        synthesizer = undefined;
+    });
+           }
+     
+           if (!!window.SpeechSDK) {
+             SpeechSDK = window.SpeechSDK;
+             startRecognizeOnceAsyncButton.disabled = false;
+     
+             document.getElementById('content').style.display = 'block';
+             document.getElementById('warning').style.display = 'none';
+           }
+         });
+       </script>
 </html>
