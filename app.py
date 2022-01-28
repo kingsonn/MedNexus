@@ -231,6 +231,10 @@ def predictcancer():
         return render_template('lowrisk.html')
     else:
         return render_template('highrisk.html')
+    
+@app.route("/pneumonia")
+def pneumonia():
+    return render_template("pneumonia.html")
 
 @app.route('/register' , methods = ['GET', 'POST'])
 def register():
