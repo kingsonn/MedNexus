@@ -250,26 +250,21 @@
                 <h1 style="font-weight:500;">Speech Recognition Speech SDK not found (microsoft.cognitiveservices.speech.sdk.bundle.js missing).</h1>
               </div>
               
-              <div id="content" style="display:none">
-                <table width="100%">
-                  <tr>
-                    <td style="display: none;" align="right"><a style="display: none;" href="https://docs.microsoft.com/azure/cognitive-services/speech-service/get-started" target="_blank">Subscription</a>:</td>
-                    <td><input style="display: none;" id="subscriptionKey" type="text" size="40" value="5795218c08664bc795cd964d7bfdf5a4"></td>
-                  </tr>
-                  <tr>
-                    <td style="display: none;" align="right">Region</td>
-                    <td><input style="display: none;" id="serviceRegion" type="text" size="40" value="eastus"></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td><button  style="font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; "    id="startRecognizeOnceAsyncButton">Dr. Express 🔊</button></td>
-                  </tr>
-                  <tr>
-                    <td style="display: none;" align="right" valign="top">Results</td>
-                    <td><textarea style="display: none;" id="phraseDiv" style="display: inline-block;width:500px;height:200px"></textarea></td>
-                  </tr>
-                </table>
+              <div id="content" style="display:flex">
+                
+                  
+                   <input style="display: none;" id="subscriptionKey" type="text" size="40" value="5795218c08664bc795cd964d7bfdf5a4">
+                 
+                <input style="display: none;" id="serviceRegion" type="text" size="40" value="eastus">
+                <button  style="font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; "    id="startRecognizeOnceAsyncButton">Dr. Medico 🔊</button>
+                   <textarea style="display: none;" id="phraseDiv" style="display: inline-block;width:500px;height:200px"></textarea>
+                <button  style="font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; " id="start-camera">Start Camera 📷</button>
+                <video  style="display: none;" id="video" width="100" height="100" autoplay></video>
+                <button style="font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; margin:10px; " id="click-photo" onclick="processImage()">Analyze</button>
+                <canvas id="canvas" style="display: none;" width="320" height="240"></canvas>
+                <button  style="font-size:larger; width: 245px; border-radius: 10px;background: #94cae3; " id="stop">Stop Camera 📷</button><br><br>
               </div>
+
         </div>
     </div>
    
@@ -564,5 +559,101 @@
              document.getElementById('warning').style.display = 'none';
            }
          });
+       </script>
+       <script>
+        let camera_button = document.querySelector("#start-camera");
+        let video = document.querySelector("#video");
+        let click_button = document.querySelector("#click-photo");
+        let canvas = document.querySelector("#canvas");
+        let stopcam = document.querySelector("#stop");
+        camera_button.addEventListener('click', async function () {
+            let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+            video.srcObject = stream;
+            console.log(stream)
+            video.style.display = "block"
+            
+
+            stopcam.addEventListener('click', async function () {
+                stream.getTracks().forEach(function (track) {
+                    track.stop();
+                    video.style.display = "none"
+                
+                   
+
+                });
+            });
+          
+            
+
+        });
+        function getMax(obj){
+            return Math.max.apply(null,Object.keys(obj));
+        };
+        makeblob = function (dataURL) {
+            var BASE64_MARKER = ';base64,';
+            if (dataURL.indexOf(BASE64_MARKER) == -1) {
+                var parts = dataURL.split(',');
+                var contentType = parts[0].split(':')[1];
+                var raw = decodeURIComponent(parts[1]);
+                return new Blob([raw], { type: contentType });
+            }
+            var parts = dataURL.split(BASE64_MARKER);
+            var contentType = parts[0].split(':')[1];
+            var raw = window.atob(parts[1]);
+            var rawLength = raw.length;
+
+            var uInt8Array = new Uint8Array(rawLength);
+
+            for (var i = 0; i < rawLength; ++i) {
+                uInt8Array[i] = raw.charCodeAt(i);
+            }
+
+            return new Blob([uInt8Array], { type: contentType });
+        }
+
+        function processImage() {
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            let image_data_url = canvas.toDataURL();
+
+            var subscriptionKey = "3771a692d85b4ec296868a1150c42150";
+            var uriBase =
+                "https://facefac.cognitiveservices.azure.com/face/v1.0/detect?overload=stream&returnFaceAttributes=age,gender,emotion&recognitionModel=recognition_01&returnRecognitionModel=True&detectionModel=detection_01";
+
+        
+
+            // Perform the REST API call.
+            $.ajax({
+                url: "https://hahacv-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/9668de6b-ff5f-403a-a290-56f7fd49c677/classify/iterations/Iteration1/image",
+
+                beforeSend: function (xhrObj) {
+                    // Request headers
+                    xhrObj.setRequestHeader("Prediction-Key", "659d0587560d461086c017ee619f6d07");
+                    xhrObj.setRequestHeader("Content-Type", "application/octet-stream");
+                },
+                type: "POST",
+                processData: false,
+
+                data: makeblob(image_data_url)
+            })
+
+                .done(function (data) {
+                    // Show formatted JSON on webpage.
+                    abc = data["predictions"][0]["tagName"];
+                   console.log(abc);
+                   
+                })
+
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    // Display error message.
+                    var errorString = (errorThrown === "") ?
+                        "Error. " : errorThrown + " (" + jqXHR.status + "): ";
+                    errorString += (jqXHR.responseText === "") ?
+                        "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
+                            jQuery.parseJSON(jqXHR.responseText).message :
+                            jQuery.parseJSON(jqXHR.responseText).error.message;
+                    alert(errorString);
+                });
+            
+        };
        </script>
 </html>

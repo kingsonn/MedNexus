@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liver Disease</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="/static/examples.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600&family=Orbitron:wght@500&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+  <script language="javascript" type="text/javascript" src="/static/jquery.js"></script>
+  <script language="javascript" type="text/javascript" src="/static/jquery.canvaswrapper.js"></script>
+  <script language="javascript" type="text/javascript" src="/static/jquery.colorhelpers.js"></script>
+  <script language="javascript" type="text/javascript" src="/static/jquery.flot.js"></script>
+  <script language="javascript" type="text/javascript" src="/static/jquery.flot.saturated.js"></script>
+  <script language="javascript" type="text/javascript" src="/static/jquery.flot.browser.js"></script>
+  <script language="javascript" type="text/javascript" src="/static/jquery.flot.drawSeries.js"></script>
+  <script language="javascript" type="text/javascript" src="/static/jquery.flot.uiConstants.js"></script>
+  <script language="javascript" type="text/javascript" src="/static/jquery.flot.categories.js"></script>
+  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600&family=Orbitron:wght@500&family=Roboto+Condensed:wght@300&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      margin: 0px;
+      background-color: black;
+
+    }
+
+    .navbar div a h1 {
+      font-size: xxx-large;
+      font-family: 'Montserrat';
+      font-weight: normal;
+      color: rgb(243, 234, 234);
+      text-align: center;
+      margin: 0;
+
+      text-align: center;
+    }
+
+    .navbar {
+
+      background-color: #020c12bd;
+      margin: 0px;
+      padding: 6px;
+      position: fixed;
+      width: 100%;
+    }
+
+
+    .navbar div {
+      margin: 0px 0px;
+    }
+
+    .info {
+      margin: 0px 0px;
+      margin-right: 0px;
+      font-size: 60px;
+      font-family: 'Cinzel', serif;
+      color: white;
+      padding: 10px 10px;
+    }
+
+    .navbar::before {
+      background: url('/static/AdobeStock_328915018.jpeg');
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    #imgg {
+      width: 100%;
+    }
+
+    .container1,
+    .container2 {
+      display: flex;
+
+
+    }
+
+    .card {
+      border: solid black;
+      width: 120%;
+      margin: 13px;
+      border-radius: 8px;
+      font-size: 28px;
+      background-color: #020c12bd;
+      color: white;
+      padding: 10px;
+
+    }
+
+    .infoo {
+      padding: 10px;
+      display: flex;
+
+    }
+
+    .infoo img {
+      width: 100%;
+    }
+
+    .infotext {
+      width: 100%
+    }
+
+    .infopic {
+      width: 15%;
+    }
+
+    .container1::before {
+      background: url('/static/AdobeStock_328915018.jpeg') fixed;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.2;
+    }
+
+    .cardtitle {
+      margin-top: 5px;
+      font-size: 35px;
+      padding-left: 10px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .container1 a,
+    .container2 a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .forminp div {
+      padding: 10px 10px;
+    }
+
+    .submitbtn {
+
+      font-size: 40px;
+      border-radius: 10px;
+      background-color: #1380c169;
+      color: white;
+      padding: 5px 15px;
+    }
+
+    #page-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #title {
+      color: #f6f6f6;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2em;
+    }
+
+    #btn {
+      margin: 9px;
+      position: fixed;
+      z-index: 5;
+      top: 15px;
+      left: 15px;
+      cursor: pointer;
+      transition: left 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+    }
+
+    #btn div {
+      width: 35px;
+      height: 2px;
+      margin-bottom: 8px;
+      background-color: #00DFFC;
+      transition: transform 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91), opacity 500ms, background-color 250ms;
+    }
+
+    #btn.active {
+      left: 230px;
+    }
+
+    #btn.active div {
+      background-color: #343838;
+    }
+
+    #btn.active #top {
+      transform: translateY(10px) rotate(-135deg);
+    }
+
+    #btn.active #middle {
+      opacity: 0;
+      transform: rotate(135deg);
+    }
+
+    #btn.active #bottom {
+      transform: translateY(-10px) rotate(-45deg);
+    }
+
+    #box {
+      position: fixed;
+      z-index: 4;
+      overflow: auto;
+      top: 0px;
+      left: -275px;
+      width: 275px;
+      opacity: 0;
+      padding: 20px 0px;
+      height: 100%;
+      background-color: #f6f6f6;
+      color: #343838;
+      transition: all 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+    }
+
+    #box.active {
+      left: 0px;
+      opacity: 1;
+    }
+
+    #items {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #items .item {
+      position: relative;
+      cursor: pointer;
+      font-size: 2em;
+      padding: 15px 30px;
+      transition: all 250ms;
+    }
+
+    #items .item:hover {
+      padding: 15px 45px;
+      background-color: rgba(52, 56, 56, 0.2);
+    }
+
+    #btn,
+    #btn * {
+      will-change: transform;
+    }
+
+    #box {
+      will-change: transform, opacity;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+
+    <div id="btn">
+      <div id='top'></div>
+      <div id='middle'></div>
+      <div id='bottom'></div>
+    </div>
+    <div id="box">
+      <div id="items">
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+        <div class="item">Item 4</div>
+        <div class="item">Item 5</div>
+      </div>
+    </div>
+    <div>
+      <a style="text-decoration: none;" href="/">
+        <h1>MedNexus | Mental Health</h1>
+      </a>
+    </div>
+
+  </nav>
+  <br><br><br>
+  <div class="infoo">
+    <div class="infopic">
+      <img src="/static/boy-2027768.png" alt="">
+    </div>
+
+    <div class="infotext">
+      <div style="padding-bottom: 0px;" class="info"> <u>Emotion Analyser</u> </div>
+      <div style="padding-top: 0px; font-size: 40px;" class="info">Track your psycological state through remote video and audio sessions</div>
+    </div>
+  </div>
+
+  <!-- <img id="imgg" src="/Static/AdobeStock_328915018.jpeg" alt=""> -->
+  <div style="background-image: url(/static/AdobeStock_328915018.jpeg); background-image: fixed;">
+    <div class="container1">
+      <div style="width: 170%;" class="card">
+
+
+        <button style="font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100%; border-radius: 10px;background: #94cae3; margin: 10px 0px;"
+          id="start-camera">Start Camera 📷</button>
+        <video style="display: none;" id="video" width="100%" height="240" autoplay></video>
+        <canvas id="canvas" style="display: none;" width="320" height="240"></canvas>
+        <button style="font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100%; border-radius: 10px;background: #94cae3; margin: 10px 0px; "
+          id="stop">Stop Camera ❌</button>
+
+      </div>
+
+
+
+      <div class="card">
+        <div class="cardtitle">
+          <span>Video Session</span>
+        </div>
+        <hr>
+        <div id="content">
+          <p id="beforestats">Start your camera to start your video session.</p>
+          <div style="display: none;" id="stats" class="demo-container">
+            <div id="placeholder" class="demo-placeholder"></div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+  
+    <div class="container2">
+      <div style="width: 170%;" class="card">
+
+
+        <input style="display: none;" id="subscriptionKey" type="text" size="40" value="5795218c08664bc795cd964d7bfdf5a4">
+                 
+                <input style="display: none;" id="serviceRegion" type="text" size="40" value="eastus">
+                <button  style="font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100%; height:40%; border-radius: 10px;background: #94cae3; margin: 5% 0px;"   id="startRecognizeOnceAsyncButton">Record 🔊</button>
+                <span>Vocal Sentiment: </span>
+                <span id="sentiment">Positive</span>
+                   <textarea style="display: none;" id="phraseDiv" style="display: inline-block;width:500px;height:200px"></textarea>
+
+      </div>
+
+
+
+      <div class="card">
+        <div class="cardtitle">
+          <span>Audio Session</span>
+        </div>
+        <hr>
+        <div id="content">
+          <p id="beforestats">Start your camera to start your video session.</p>
+          <div style="display: none;" id="stats" class="demo-container">
+            <div id="placeholder" class="demo-placeholder"></div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+    </div>
+    <footer id="copyright" style="background-color: black; color: white; text-align: center;">
+  
+      Copyright &copy; Hanson Braganza. All rights reserved!
+   
+  </footer>
+    <script>
+      var score;
+      var evalu;
+
+      let camera_button = document.querySelector("#start-camera");
+      let video = document.querySelector("#video");
+      let click_button = document.querySelector("#click-photo");
+      let canvas = document.querySelector("#canvas");
+      let stopcam = document.querySelector("#stop");
+      let stats = document.querySelector("#stats")
+      let beforestats = document.querySelector("#beforestats")
+      camera_button.addEventListener('click', async function () {
+        let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+        video.srcObject = stream;
+        video.style.display = "block"
+        setTimeout(del, 3000)
+        function del(){
+          beforestats.style.display = "none"
+          stats.style.display = "block"
+        }
+
+        stopcam.addEventListener('click', async function () {
+          stream.getTracks().forEach(function (track) {
+            track.stop();
+            video.style.display = "none"
+            stats.style.display = "none"
+            beforestats.style.display = "block"
+            clearInterval(intervall);
+
+          });
+        });
+
+        const intervall = setInterval(processImage, 3000);
+
+      });
+      function getMax(obj) {
+        return Math.max.apply(null, Object.keys(obj));
+      };
+      makeblob = function (dataURL) {
+        var BASE64_MARKER = ';base64,';
+        if (dataURL.indexOf(BASE64_MARKER) == -1) {
+          var parts = dataURL.split(',');
+          var contentType = parts[0].split(':')[1];
+          var raw = decodeURIComponent(parts[1]);
+          return new Blob([raw], { type: contentType });
+        }
+        var parts = dataURL.split(BASE64_MARKER);
+        var contentType = parts[0].split(':')[1];
+        var raw = window.atob(parts[1]);
+        var rawLength = raw.length;
+
+        var uInt8Array = new Uint8Array(rawLength);
+
+        for (var i = 0; i < rawLength; ++i) {
+          uInt8Array[i] = raw.charCodeAt(i);
+        }
+
+        return new Blob([uInt8Array], { type: contentType });
+      }
+
+      function processImage() {
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+        let image_data_url = canvas.toDataURL();
+
+        var subscriptionKey = "3771a692d85b4ec296868a1150c42150";
+        var uriBase =
+          "https://facefac.cognitiveservices.azure.com/face/v1.0/detect?overload=stream&returnFaceAttributes=age,gender,emotion,headPose,smile&recognitionModel=recognition_01&returnRecognitionModel=True&detectionModel=detection_01";
+
+
+
+
+
+
+        // Perform the REST API call.
+        $.ajax({
+          url: uriBase,
+
+          // Request headers.
+          beforeSend: function (xhrObj) {
+            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+          },
+          processData: false,
+          contentType: 'application/octet-stream',
+          type: "POST",
+
+          // Request body.
+          data: makeblob(image_data_url)
+        })
+
+
+          .done(function (data) {
+            // Show formatted JSON on webpage.
+
+            console.log(JSON.parse(JSON.stringify(data))[0].faceAttributes.headPose)
+            var ages = JSON.parse(JSON.stringify(data))[0].faceAttributes.age
+            var genders = JSON.parse(JSON.stringify(data))[0].faceAttributes.gender
+            var emo1 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.neutral
+            var emo2 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.sadness
+            var emo3 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.happiness
+            var emo4 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.anger
+            var emo5 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.contempt
+            var emo6 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.disgust
+            var emo7 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.fear
+            var emo8 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.suprise
+            $(function () {
+
+              var data = [["Anger", emo4], ["Contempt", emo5], ["Disgust", emo6], ["Neutral", emo1], ["Sadness", emo2], ["Fear", emo7], ["Suprise", emo8], ["Happiness", emo3]];
+
+              $.plot("#placeholder", [data], {
+                series: {
+                  bars: {
+                    show: true,
+                    barWidth: 0.6,
+                    align: "center"
+                  }
+                },
+                xaxis: {
+                  mode: "categories",
+                  showTicks: false,
+                  gridLines: false
+                }
+              });
+
+              // Add the Flot version string to the footer
+
+              $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+            });
+
+            
+
+
+          })
+
+          .fail(function (jqXHR, textStatus, errorThrown) {
+            // Display error message.
+            var errorString = (errorThrown === "") ?
+              "Error. " : errorThrown + " (" + jqXHR.status + "): ";
+            errorString += (jqXHR.responseText === "") ?
+              "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
+                jQuery.parseJSON(jqXHR.responseText).message :
+                jQuery.parseJSON(jqXHR.responseText).error.message;
+            alert(errorString);
+          });
+        
+      };
+    </script>
+</body>
+
+</html>
