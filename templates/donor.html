@@ -31,7 +31,7 @@
               
             .navbar{
                 
-                background-color: #020c12bd;
+                background-color: #000000;;
                 margin: 0px;
                 padding: 6px;
                 position: fixed;
@@ -372,6 +372,32 @@
             Copyright &copy; Hanson Braganza. All rights reserved!
         </div>
         <script language="javascript">print_state("sts");</script>
+        <script>
+            const sidebarBox = document.querySelector('#box'),
+            sidebarBtn = document.querySelector('#btn'),
+            pageWrapper = document.querySelector('#page-wrapper');
+            
+            sidebarBtn.addEventListener('click', event => {
+              sidebarBtn.classList.toggle('active');
+              sidebarBox.classList.toggle('active');
+            });
+            
+            pageWrapper.addEventListener('click', event => {
+            
+              if (sidebarBox.classList.contains('active')) {
+                sidebarBtn.classList.remove('active');
+                sidebarBox.classList.remove('active');
+              }
+            });
+            
+            window.addEventListener('keydown', event => {
+            
+              if (sidebarBox.classList.contains('active') && event.keyCode === 27) {
+                sidebarBtn.classList.remove('active');
+                sidebarBox.classList.remove('active');
+              }
+            });
+        </script>
 </body>
 
 </html>
