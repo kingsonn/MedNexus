@@ -436,7 +436,8 @@ def donorform():
     
         order = {
             'id' : fname + " " + lname,
-            'blood_group' : bgroup,      
+            'blood_group' : bgroup,
+            'type': 'donor',     
             'first_name': fname,
             'last_name': lname,       
             'age' : age,            
