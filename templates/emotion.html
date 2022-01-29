@@ -375,6 +375,7 @@
       Copyright &copy; Hanson Braganza. All rights reserved!
    
   </footer>
+  <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
     <script>
       var score;
       var evalu;
@@ -478,10 +479,10 @@
             var emo5 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.contempt
             var emo6 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.disgust
             var emo7 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.fear
-            var emo8 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.suprise
+            var emo8 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.surprise
             $(function () {
 
-              var data = [["Anger", emo4], ["Contempt", emo5], ["Disgust", emo6], ["Neutral", emo1], ["Sadness", emo2], ["Fear", emo7], ["Suprise", emo8], ["Happiness", emo3]];
+              var data = [["Anger", emo4], ["Contempt", emo5], ["Disgust", emo6], ["Neutral", emo1], ["Sadness", emo2], ["Fear", emo7], ["Surprise", emo8], ["Happiness", emo3]];
 
               $.plot("#placeholder", [data], {
                 series: {
@@ -503,10 +504,52 @@
               $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
             });
 
-            
-
-
+           var a =  Math.max(emo1, emo2, emo3, emo4, emo4, emo5, emo6, emo7, emo8)
+           if(a == emo2){
+           
+              startSpeakTextAsyncButton = document.getElementById("startSpeakTextAsyncButton");
+              subscriptionKey = document.getElementById("subscriptionKey");
+              serviceRegion = document.getElementById("serviceRegion");
+              
+             
+               
+               
+        
+                if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
+                  alert("Please enter your Microsoft Cognitive Services Speech subscription key!");
+                  startSpeakTextAsyncButton.disabled = false;
+                  return;
+                }
+                var speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
+        
+                synthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig);
+        
+                let inputText = "Hello, Dr. Medico here, How can I help you?";
+                synthesizer.speakTextAsync(
+                  inputText,
+                  function (result) {
+                   
+                   
+                    window.console.log(result);
+                    synthesizer.close();
+                    synthesizer = undefined;
+                  },
+                  function (err) {
+               
+                    
+                    window.console.log(err);
+        
+                    synthesizer.close();
+                    synthesizer = undefined;
+                });
+             
+        
+              
+            };
+           
           })
+
+          
 
           .fail(function (jqXHR, textStatus, errorThrown) {
             // Display error message.

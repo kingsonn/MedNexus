@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from sklearn.preprocessing import StandardScaler
-scaler = StandardScaler()
+import azure.cosmos.documents as documents
+import azure.cosmos.cosmos_client as cosmos_client
+import azure.cosmos.exceptions as exceptions
+from azure.cosmos.partition_key import PartitionKey
 import numpy as np
 import pandas as pd
 import pickle
@@ -13,6 +16,8 @@ from precaution_detection import Precaution
 from hospitals import Hospitals
 import datetime
 import model as m
+import config
+import uuid
 
 
 # Load ML model
@@ -23,9 +28,20 @@ model_breastcancer = pickle.load(open('breastcancermodel.pkl', 'rb'))
 scaler1 = pickle.load(open('scaler1.pkl', 'rb'))
 model_cancer = pickle.load(open('cancermodel.pkl', 'rb'))
 scaler = pickle.load(open('scaler.pkl', 'rb'))
+scaler = StandardScaler()
 # Create application
 app = Flask(__name__)
 app.config["DEBUG"] = True
+
+HOST = config.settings['host']
+MASTER_KEY = config.settings['master_key']
+DATABASE_ID = config.settings['database_id']
+CONTAINER_ID = config.settings['container_id']
+
+client = cosmos_client.CosmosClient(HOST, {'masterKey': MASTER_KEY}, user_agent="CosmosDBPythonQuickstart", user_agent_overwrite=True)
+
+db = client.get_database_client(DATABASE_ID)
+container = db.get_container_client(CONTAINER_ID)
 # user info
 user_info = []
 hosp_name = []
@@ -400,7 +416,39 @@ def survey():
 
     return render_template("Formpage.html")
 
+@app.route('/donor')
+def donor():
+    return render_template('donor.html')
 
+@app.route('/donor', methods =["GET", "POST"])
+def donorform():
+    if request.method == "POST":
+        fname = request.form['first-name']
+        lname = request.form['last-name']
+        age = request.form['Age']
+        bgroup = request.form['blood-group']
+        email = request.form['email']
+        mobile = request.form['mobile']
+        state = request.form['stt']
+        city = request.form['city']
+        pin = request.form['pincode']
+        gender = request.form['gender']
+    
+        order = {
+            'id' : fname + " " + lname,
+            'blood_group' : bgroup,      
+            'first_name': fname,
+            'last_name': lname,       
+            'age' : age,            
+            'email': email,
+            'mobile': mobile,
+            'state': state,
+            'city': city,
+            'pincode': pin,            
+            'gender': gender
+            }
+        container.create_item(body=order)
+    return render_template('donor.html')
 if __name__ == '__main__':
 #Run the application
     app.run()
