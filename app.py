@@ -17,7 +17,6 @@ from hospitals import Hospitals
 import datetime
 import model as m
 import config
-import uuid
 
 
 # Load ML model
@@ -37,11 +36,15 @@ HOST = config.settings['host']
 MASTER_KEY = config.settings['master_key']
 DATABASE_ID = config.settings['database_id']
 CONTAINER_ID = config.settings['container_id']
+CONTAINER_ID1 = config.settings['container_id1']
+CONTAINER_ID2 = config.settings['container_id2']
 
 client = cosmos_client.CosmosClient(HOST, {'masterKey': MASTER_KEY}, user_agent="CosmosDBPythonQuickstart", user_agent_overwrite=True)
 
 db = client.get_database_client(DATABASE_ID)
 container = db.get_container_client(CONTAINER_ID)
+container1 = db.get_container_client(CONTAINER_ID1)
+container2 = db.get_container_client(CONTAINER_ID2)
 # user info
 user_info = []
 hosp_name = []
@@ -361,6 +364,9 @@ def thankyou():
 @app.route('/pet')
 def pet():
     return(render_template('pet.html'))
+@app.route('/emotion')
+def emotion():
+    return(render_template('emotion.html'))
 
 @app.route('/journal')
 def journal():
@@ -422,6 +428,40 @@ def donor():
 
 @app.route('/donor', methods =["GET", "POST"])
 def donorform():
+    if request.method == "POST":
+        fname = request.form['first-name']
+        lname = request.form['last-name']
+        age = request.form['Age']
+        bgroup = request.form['blood-group']
+        email = request.form['email']
+        mobile = request.form['mobile']
+        state = request.form['stt']
+        city = request.form['city']
+        pin = request.form['pincode']
+        gender = request.form['gender']
+    
+        order = {
+            'id' : fname + " " + lname,
+            'blood_group' : bgroup,
+            'type': 'donor',     
+            'first_name': fname,
+            'last_name': lname,       
+            'age' : age,            
+            'email': email,
+            'mobile': mobile,
+            'state': state,
+            'city': city,
+            'pincode': pin,            
+            'gender': gender
+            }
+        container.create_item(body=order)
+    return render_template('donor.html')
+@app.route('/bcamp')
+def bcamp():
+    return render_template('bcamp.html')
+
+@app.route('/bcamp', methods =["GET", "POST"])
+def bcampform():
     if request.method == "POST":
         fname = request.form['first-name']
         lname = request.form['last-name']

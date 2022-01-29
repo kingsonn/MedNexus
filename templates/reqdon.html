@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check in</title>
+    <script src="/static/cities.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600&family=Orbitron:wght@500&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body{
+            margin: 0px;
+            background-color: black;
+            
+        }
+        .navbar div a h1{
+            font-size:xxx-large;
+            font-family: 'Montserrat';
+            font-weight: normal;
+            color: rgb(243, 234, 234);
+            text-align: center;
+            margin:  0;
+
+            text-align: center;
+          }
+          
+        .navbar{
+            
+            background-color: #000000;;
+            margin: 0px;
+            padding: 6px;
+            position: fixed;
+            width: 100%;
+        }
+       
+        
+        .navbar div{
+            margin: 0px 0px;
+        }
+        .info{
+            margin: 0px 0px;
+            margin-right: 0px;
+            font-size: 60px;
+            font-family: 'Cinzel', serif;
+            color:white;
+            padding: 10px 10px;
+        }
+        .navbar::before{
+            background: url('/static/AdobeStock_328915018.jpeg') ;
+            content: "";
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        #imgg{
+            width: 100%;
+        }
+        .container1, .container2{
+            display: flex;
+            justify-content: center;
+
+            
+        }
+        .card{
+            border: solid black;
+            width: 120%;
+            margin: 13px;
+            border-radius: 8px;
+            font-size: 28px;
+            background-color: #020c12bd;
+            color: white;
+            padding: 10px;
+
+        }
+     
+        .infoo{
+            padding: 10px;
+            display: flex;
+
+        }
+        .infoo img{
+            width: 100%;
+        }
+        .infotext{
+            width:100%
+        }
+        .infopic{
+            width: 15%;
+        }
+        .container1::before{
+            background: url('/static/AdobeStock_328915018.jpeg') fixed;
+            content: "";
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        .cardtitle{
+            margin-top: 5px;
+            font-size: 35px;
+            padding-left: 10px;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .forminp button{
+          border-radius: 10px;
+          font-size: x-large;
+          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .container1 a, .container2 a{
+            text-decoration: none;
+            color: white;
+        }
+        .forminp div{
+            padding: 10px 10px;
+        }
+        .submitbtn{
+            
+            font-size: 40px;
+            border-radius: 10px;
+            background-color: #1380c169;
+            color: white;
+            padding: 5px 15px;
+        }
+        .forminp{
+          text-align: center;
+        }
+        .forminp input{
+          text-align: center;
+          border-radius: 5px;
+          font-size: large;
+        }
+        .submitbtn{
+                
+            font-size: 40px;
+            border-radius: 10px;
+            background-color: #1380c169;
+            color: white;
+            padding: 5px 15px;
+        }
+        
+        .submitbtn{
+            
+            font-size: 40px;
+            border-radius: 10px;
+            background-color: #1380c169;
+            color: white;
+            padding: 5px 15px;
+        }
+        #page-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+          
+          #title {
+            color: #f6f6f6;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+          }
+          
+          #btn {
+              margin: 9px;
+            position: fixed;
+            z-index: 5;
+            top: 15px;
+            left: 15px;
+            cursor: pointer;
+            transition: left 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+          }
+          #btn div {
+            width: 35px;
+            height: 2px;
+            margin-bottom: 8px;
+            background-color: #00DFFC;
+            transition: transform 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91), opacity 500ms, background-color 250ms;
+          }
+          
+          #btn.active {
+            left: 230px;
+          }
+          #btn.active div {
+            background-color: #343838;
+          }
+          #btn.active #top {
+            transform: translateY(10px) rotate(-135deg);
+          }
+          #btn.active #middle {
+            opacity: 0;
+            transform: rotate(135deg);
+          }
+          #btn.active #bottom {
+            transform: translateY(-10px) rotate(-45deg);
+          }
+          
+          #box {
+            position: fixed;
+            z-index: 4;
+            overflow: auto;
+            top: 0px;
+            left: -275px;
+            width: 275px;
+            opacity: 0;
+            padding: 20px 0px;
+            height: 100%;
+            background-color: #f6f6f6;
+            color: #343838;
+            transition: all 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+          }
+          
+          #box.active {
+            left: 0px;
+            opacity: 1;
+          }
+          
+          #items {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          #items .item {
+            position: relative;
+            cursor: pointer;
+            font-size: 2em;
+            padding: 15px 30px;
+            transition: all 250ms;
+          }
+          #items .item:hover {
+            padding: 15px 45px;
+            background-color: rgba(52, 56, 56, 0.2);
+          }
+          
+          #btn, #btn * {
+            will-change: transform;
+          }
+          
+          #box {
+            will-change: transform, opacity;
+          }
+          .forminp input, select{
+           
+            border-radius: 5px;
+            font-size: large;
+          }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+
+        <div id="btn">
+            <div id='top'></div>
+            <div id='middle'></div>
+            <div id='bottom'></div>
+        </div>
+        <div id="box">
+            <div id="items">
+                <div class="item">Item 1</div>
+                <div class="item">Item 2</div>
+                <div class="item">Item 3</div>
+                <div class="item">Item 4</div>
+                <div class="item">Item 5</div>
+            </div>
+        </div>
+        <div>
+            <a style="text-decoration: none;" href="/"><h1>MedNexus | Diagnosis</h1></a> 
+         </div>
+      
+    </nav>
+    <br><br><br>
+    <div class="infoo">
+        <div class="infopic">
+            <img src="/static/boy-2027768.png" alt="">
+        </div>
+        
+        <div class="infotext">
+            <div style="padding-bottom: 0px;" class="info"> <u>Blood Donation Request</u> </div>
+        </div>
+    </div>
+   
+    <!-- <img id="imgg" src="/Static/AdobeStock_328915018.jpeg" alt=""> -->
+    <div style="background-image: url(/static/AdobeStock_328915018.jpeg); background-image: fixed;">
+        <div class="container1">
+            <div style="width: 60%;" class="card">
+                <div class="cardtitle">
+                    <span>Enter your details to request donors</span>
+                </div>
+                <hr>
+                <div>
+                  <form class="forminp" action="{{ url_for('disease_prediction') }}" method="POST">
+                      <div class="form-group">
+                        <label for="name">First Name :</label>
+                        <input type="name" name="name" id="name"  placeholder="Enter your Name" required>
+                      </div>
+                      <div>
+                          <label for="email">Email :</label>
+                          <input type="email" name="email" id="email"  placeholder="Enter your valid Email id">
+                        </div>
+                        <div>
+                            <label for="mobile">Mobile Number:</label>
+                            <input type="number" name="mobile" id="mobile"  placeholder="Enter your Mobile Number" required>
+                        </div>
+                        <div>
+                          <label for="bcgroup">Required Blood Group:</label>
+                      <input type="text" name="bcgroup" id="bcgroup" placeholder="Enter the required Blood Group">
+                      </div>
+                      <div>
+                        <label for="stt">Location:</label>
+                        <select  id="sts" name ="stt" class="form-control" required onchange="print_city('state', this.selectedIndex);"></select>
+                        <select id ="state" name="city" class="form-control" required></select>
+                    </div>
+                      <div>
+                        <label for="pincode">Pincode:</label>
+                        <input type="text" name="pincode" id="pincode"  placeholder="Enter your Pincode " required>
+                      </div>
+                      
+                      <div>
+                        <label for="gender">Gender:</label>
+                        <select name="gender" id="gender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Non Binary">Non Binary</option>
+                            <option value="Transgender">Transgender</option>
+                        </select>
+                    </div>
+                    <div style="text-align: center;">
+                        <label for="message"> <u>Message for the donors:</u> </label> <br> <br>
+                    <textarea style="font-size: x-large;" name="message" id="message" cols="45" rows="6"></textarea>
+                    </div>
+                      
+                      
+                      <button class="submitbtn" onsubmit="alert('Success')"  type="submit" value="submit">Request Help</button>
+                    
+                    </form>
+                    
+                </div>
+            </div>
+            
+    </div>
+    <div id="copyright" style="background-color: black; color: white; text-align: center;">
+        Copyright &copy; Hanson Braganza. All rights reserved!
+    </div>
+    <script language="javascript">print_state("sts");</script>
+    <script>
+        const sidebarBox = document.querySelector('#box'),
+        sidebarBtn = document.querySelector('#btn'),
+        pageWrapper = document.querySelector('#page-wrapper');
+        
+        sidebarBtn.addEventListener('click', event => {
+          sidebarBtn.classList.toggle('active');
+          sidebarBox.classList.toggle('active');
+        });
+        
+        pageWrapper.addEventListener('click', event => {
+        
+          if (sidebarBox.classList.contains('active')) {
+            sidebarBtn.classList.remove('active');
+            sidebarBox.classList.remove('active');
+          }
+        });
+        
+        window.addEventListener('keydown', event => {
+        
+          if (sidebarBox.classList.contains('active') && event.keyCode === 27) {
+            sidebarBtn.classList.remove('active');
+            sidebarBox.classList.remove('active');
+          }
+        });
+    </script>
+    
+</body>
+</html>
