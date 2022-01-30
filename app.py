@@ -463,33 +463,31 @@ def bcamp():
 @app.route('/bcamp', methods =["GET", "POST"])
 def bcampform():
     if request.method == "POST":
-        fname = request.form['first-name']
-        lname = request.form['last-name']
-        age = request.form['Age']
-        bgroup = request.form['blood-group']
+        bname = request.form['name']
+        helpline = request.form['Helpline']
+        website = request.form['website']
+        category = request.form['category']
         email = request.form['email']
-        mobile = request.form['mobile']
+        contact = request.form['contact']
         state = request.form['stt']
         city = request.form['city']
         pin = request.form['pincode']
-        gender = request.form['gender']
+        license = request.form['Licenses']
     
         order = {
-            'id' : fname + " " + lname,
-            'blood_group' : bgroup,
-            'type': 'donor',     
-            'first_name': fname,
-            'last_name': lname,       
-            'age' : age,            
+            'id' : bname,
+            'helpline' : helpline,
+            'website': website,     
+            'category': category,           
             'email': email,
-            'mobile': mobile,
+            'contact': contact,
             'state': state,
             'city': city,
             'pincode': pin,            
-            'gender': gender
+            'license': license
             }
         container.create_item(body=order)
-    return render_template('donor.html')
+    return render_template('bcamp.html')
 if __name__ == '__main__':
 #Run the application
     app.run()
