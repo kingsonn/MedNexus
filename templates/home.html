@@ -7,13 +7,15 @@
     <title>MedNexus</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
+    <script src="/static/homepage.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600&family=Orbitron:wght@500&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
     <style>
         body{
             margin: 0px;
             background-color: black;
-            background: url(/static/mjh-shikder-eDQo2u-Gzyk-unsplash.jpg);
+            
             
         }
         .navbar div a h1{
@@ -233,19 +235,19 @@
             </div>
         </div>
         <div>
-            <a style="text-decoration: none;" href="/"><h1>MedNexus | Home</h1></a> 
+            <a  style="text-decoration: none;" href="/"><h1 id="t1">MedNexus | Home</h1></a> 
          </div>
       
     </nav>
     <br><br><br>
     <div class="infoo">
-        <div class="infopic">
-            <img src="/static/boy-2027768.png" alt="">
+        <div style="margin-right: 20px;" class="infopic">
+            <img  src="/static/boy-2027768.png" alt="">
         </div>
         
         <div class="infotext">
-            <div style="padding-bottom: 0px;" class="info">Welcome!!</div>
-            <div style="padding-top: 0px; font-size: 40px;" class="info">Use the power of AI for quick consultation and predictive diagnosis</div>
+            <div id="t2" style="padding-bottom: 0px;" class="info">Welcome!!</div>
+            <div id="t3" style="padding-top: 0px; font-size: 40px;" class="info">We provide healthcare solutions for both mental and physical well being</div>
             <div id="warning">
                 <h1 style="font-weight:500;">Speech Recognition Speech SDK not found (microsoft.cognitiveservices.speech.sdk.bundle.js missing).</h1>
               </div>
@@ -258,11 +260,21 @@
                 <input style="display: none;" id="serviceRegion" type="text" size="40" value="eastus">
                 <button  style="font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; "    id="startRecognizeOnceAsyncButton">Dr. Medico 🔊</button>
                    <textarea style="display: none;" id="phraseDiv" style="display: inline-block;width:500px;height:200px"></textarea>
-                <button  style="font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; " id="start-camera">Start Camera 📷</button>
-                <video  style="display: none;" id="video" width="100" height="100" autoplay></video>
-                <button style="font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; margin:10px; " id="click-photo" onclick="processImage()">Analyze</button>
+                <button  style="font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; " id="start-camera">Sign Language 📷</button>
+                <video  style="display: none ; " id="video" width="20" height="20" autoplay></video>
+                <button style="display: none;font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; margin:10px; " id="click-photo" onclick="processImage()">Analyze</button>
                 <canvas id="canvas" style="display: none;" width="320" height="240"></canvas>
-                <button  style="font-size:larger; width: 245px; border-radius: 10px;background: #94cae3; " id="stop">Stop Camera 📷</button><br><br>
+                <button  style="display: none;font-size:larger;  border-radius: 10px;background: #94cae3; " id="stop">❌</button>
+                <select style="
+                font-size: x-large;
+                border-radius: 10px;
+                background: #94cae3;" name="trans" id="trans">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option  value="es">Spanish</option>
+                    <option value="zh-Hans">Mandarin</option>
+                    <option value="fr">French</option>
+                </select>
               </div>
 
         </div>
@@ -273,23 +285,24 @@
         <div class="container1">
            <a href="/"> <div class="card">
                 <div class="cardtitle">
-                    <span>About</span>
+                    <span id="t4">About</span>
                 </div>
                 <hr>
-                <div class="cardinfo">
+                <div id="t5" class="cardinfo">
                     MedNexus addresses the opportunity of using AI and machine learning in risk prediction and consultation of diseases for improving efficiency. MedNexus functions as a virtual AI medical assistant. It can help people get a diagnosis of multiple diseases within a matter of seconds and provide people with proper consultancy. 
                 </div>
             </a>
             </div>
-            <a href="/consultation">
+            <a href="/diagnosis">
                 <div class="card">
                     <div class="cardtitle">
-                    <span>Quick Consultation</span>
+                        <span id="t14">Diagnosis</span>
                     </div>
                     <hr>
-                    <div class="cardinfo">
-                        While it is cheaper to go on Google to self-diagnose rather than to visit a doctor, this often leads to inaccurate diagnosis and can be extremely dangerous as they might follow a wrong treatment plan or may not realize the severity of their condition. You can talk to Dr. Medico our AI doctor inorder to recieve better consultation.
+                    <div id="t15" class="cardinfo">
+                        MedNexus provides an easy to use interface That facilitates multiple end-to-end disease detection models built using robust Machine Learning models which are trained on data of hundreds of patients diagnosed before from across the globe. By taking in inputs from the medical reports of the person we can predict whether a person has a high or low risk from suffering a particular disease. We also provide diagnosis with medical imaging for various life threatning diseases.
                     </div>
+                   
                 </a>
         
             </div>
@@ -298,21 +311,21 @@
         <div class="container3">
             <a href="/register"> <div class="card">
                  <div class="cardtitle">
-                     <span>Medical help</span>
+                     <span id="t8">Medical help</span>
                  </div>
                  <hr>
-                 <div class="cardinfo">
-                    Worried about your symptoms? Don't be anymore. Here you can register yourself, predict a disease from your symptoms and directly book an appointment in your nearest hospital.  
+                 <div  id="t9" class="cardinfo">
+                    Do not worry about your symptoms. Here you can register yourself, predict a disease from your symptoms and directly book an appointment in your nearest hospital.  
                  </div>
              </a>
              </div>
              <a href="/mental">
                  <div class="card">
                      <div class="cardtitle">
-                     <span>Mental Health</span>
+                     <span id="t10">Mental Health</span>
                      </div>
                      <hr>
-                     <div class="cardinfo">
+                     <div id="t11" class="cardinfo">
                          Mental health refers to cognitive, behavioral, and emotional well-being. MedNexus through this feature helps individuals relieve stress and emotional baggage through simple yet fullfilling methods like art therapy, journal writing where you can get rid of negative thoughts by writing and deleting, and my favourite pet therapy.
                      </div>
                  </a>
@@ -323,24 +336,24 @@
          <div class="container4">
             <a href="/Formpage"> <div class="card">
                  <div class="cardtitle">
-                     <span>Insurance Cost Predictor</span>
+                     <span id="t12">Insurance Predictor</span>
                  </div>
                  <hr>
-                 <div class="cardinfo">
+                 <div id="t13" class="cardinfo">
                      This predictor tool uses advanced machine learning tools and data science algorithms to predict your medical insurance cost according to the input provided by you. This model comes with 90% accuracy in gradient boosting which tends to be most accurate among all of the rest used models. This model has been built with derived insights from beautiful and analytical data visualization of each and every feature.
                  </div>
              </a>
              </div>
              
-             <a href="/diagnosis">
+             <a href="/consultation">
                 <div class="card">
                     <div class="cardtitle">
-                        <span>Diagnosis</span>
-                    </div>
-                    <hr>
-                    <div class="cardinfo">
-                        E-Medico provides an easy to use interface That facilitates multiple end-to-end disease detection model built using robust Machine Learning models which are trained on data of hundreds of patients diagnosed before from across the globe. By taking in inputs from the medical reports of the person we can predict whether a person has a high or low risk from suffering a particular disease.
-                    </div>
+                        <span id="t6">Quick Consultation</span>
+                        </div>
+                        <hr>
+                        <div id="t7" class="cardinfo">
+                            While it is cheaper to go on Google to self-diagnose rather than to visit a doctor, this often leads to inaccurate diagnosis and can be extremely dangerous as they might follow a wrong treatment plan or may not realize the severity of their condition. You can talk to Dr. Medico our AI doctor inorder to recieve better consultation.
+                        </div>  
                 </a>
                 </div>
          </div> 
@@ -364,7 +377,7 @@
                 <span>Contact</span>
             </div>
             <hr>
-            <div class="cardinfo">
+            <div id="t16" class="cardinfo">
                 Project built by: Hanson Braganza <br>
                 E-mail: hansonnnnnnn@gmail.com <br>
                 GIthub:  https://github.com/kingsonn <br>
@@ -375,100 +388,13 @@
         
         </div>
         </div>
-        
+        <button onclick="esp()">es</button>
     </div>
     <div id="copyright" style="background-color: black; color: white; text-align: center;">
         Copyright &copy; Hanson Braganza. All rights reserved!
     </div>
-    <script src="/static/nav.js"></script>
-       <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
-       <script src="/static/homepage.js"></script>
-       <script>
-        let camera_button = document.querySelector("#start-camera");
-        let video = document.querySelector("#video");
-        let click_button = document.querySelector("#click-photo");
-        let canvas = document.querySelector("#canvas");
-        let stopcam = document.querySelector("#stop");
-        camera_button.addEventListener('click', async function () {
-            let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-            video.srcObject = stream;
-            video.style.display = "block"
-         
-    
-            stopcam.addEventListener('click', async function () {
-              stream.getTracks().forEach(function (track) {
-                track.stop();
-                video.style.display = "none"
-                clearInterval(intervall);
-    
-              });
-            });
-    
-            const intervall = setInterval(processImage, 3000);
-          
-            
+    <script src="/static/nav.js"></script>  
+    <script src="/static//homecam.js"></script>
+    <script src="/static/translate.js"></script>
 
-        });
-        function getMax(obj){
-            return Math.max.apply(null,Object.keys(obj));
-        };
-        makeblob = function (dataURL) {
-            var BASE64_MARKER = ';base64,';
-            if (dataURL.indexOf(BASE64_MARKER) == -1) {
-                var parts = dataURL.split(',');
-                var contentType = parts[0].split(':')[1];
-                var raw = decodeURIComponent(parts[1]);
-                return new Blob([raw], { type: contentType });
-            }
-            var parts = dataURL.split(BASE64_MARKER);
-            var contentType = parts[0].split(':')[1];
-            var raw = window.atob(parts[1]);
-            var rawLength = raw.length;
-
-            var uInt8Array = new Uint8Array(rawLength);
-
-            for (var i = 0; i < rawLength; ++i) {
-                uInt8Array[i] = raw.charCodeAt(i);
-            }
-
-            return new Blob([uInt8Array], { type: contentType });
-        }
-
-        function processImage() {
-            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-            let image_data_url = canvas.toDataURL();
-            $.ajax({
-                url: "https://hahacv-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/9668de6b-ff5f-403a-a290-56f7fd49c677/classify/iterations/Iteration1/image",
-
-                beforeSend: function (xhrObj) {
-                    // Request headers
-                    xhrObj.setRequestHeader("Prediction-Key", "659d0587560d461086c017ee619f6d07");
-                    xhrObj.setRequestHeader("Content-Type", "application/octet-stream");
-                },
-                type: "POST",
-                processData: false,
-
-                data: makeblob(image_data_url)
-            })
-
-                .done(function (data) {
-                    // Show formatted JSON on webpage.
-                    abc = data["predictions"][0]["tagName"];
-                   console.log(abc);
-                   
-                })
-
-                .fail(function (jqXHR, textStatus, errorThrown) {
-                    // Display error message.
-                    var errorString = (errorThrown === "") ?
-                        "Error. " : errorThrown + " (" + jqXHR.status + "): ";
-                    errorString += (jqXHR.responseText === "") ?
-                        "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
-                            jQuery.parseJSON(jqXHR.responseText).message :
-                            jQuery.parseJSON(jqXHR.responseText).error.message;
-                    alert(errorString);
-                });
-            
-        };
-       </script>
 </html>
