@@ -439,10 +439,10 @@ def donorform():
         city = request.form['city']
         pin = request.form['pincode']
         gender = request.form['gender']
-    
+        
         order = {
             'id' : fname + " " + lname,
-            'blood_group' : bgroup,
+            'blood_group' : bgroup.upper(),
             'type': 'donor',     
             'first_name': fname,
             'last_name': lname,       
@@ -454,7 +454,12 @@ def donorform():
             'pincode': pin,            
             'gender': gender
             }
-        container.create_item(body=order)
+        try:
+            container.create_item(body=order)
+            return render_template('donor.html', result = "Registered Successfully 👍")
+
+        except exceptions.CosmosResourceExistsError:
+            return render_template('donor.html', result = "User already exists 😅")
     return render_template('donor.html')
 @app.route('/bcamp')
 def bcamp():
@@ -476,6 +481,7 @@ def bcampform():
     
         order = {
             'id' : bname,
+            'type': 'blood_bank',
             'helpline' : helpline,
             'website': website,     
             'category': category,           
@@ -486,8 +492,70 @@ def bcampform():
             'pincode': pin,            
             'license': license
             }
-        container1.create_item(body=order)
+        try:
+            container.create_item(body=order)
+            return render_template('bcamp.html', result = "Registered Successfully 👍")
+
+        except exceptions.CosmosResourceExistsError:
+            return render_template('bcamp.html', result = "User already exists 😅")
     return render_template('bcamp.html')
+@app.route('/reqcd')
+def reqcd():
+    return render_template('bcamp.html')
+
+@app.route('/reqcd', methods =["GET", "POST"])
+def reqcdform():
+    if request.method == "POST":
+        
+        email = request.form['emailid']
+        bgroup = request.form['bcgroup']
+        message = request.form['message']
+        
+    
+        order = {
+            'id': email,
+            'type': 'blood_bank',
+            'email' : email,
+            'rblood_group' : bgroup,
+            'message': message,     
+            }
+        try:
+            container.create_item(body=order)
+            container.delete_item(item=email, partition_key= 'blood_bank')
+            return render_template('bcamp.html', result1 = "Please Register first 😅")
+
+        except exceptions.CosmosResourceExistsError:
+            state = list(container.query_items(
+            query="SELECT r.state FROM r WHERE r.type='blood_bank' AND r.email=" + "'" + email + "'",
+            enable_cross_partition_query=True
+        ))
+            
+            bstate = state[0]['state']
+            donors = list(container.query_items(
+                query="SELECT r.email FROM r WHERE r.type='donor' AND r.blood_group=" + "'" + bgroup + "'" + " AND  r.state=" + "'" + bstate + "'" ,
+                enable_cross_partition_query=True
+                ))
+            
+            print(donors)
+            return render_template('bcamp.html', result = "User already exists 😅")
+    return render_template('bcamp.html')
+def check_email(cont):
+    print('\nQuerying for an  Item by Partition Key\n')
+
+    items = list(cont.query_items(
+        query="SELECT r.email FROM r WHERE r.email= 'hansonnnnnnn@gmail.com'",
+       enable_cross_partition_query=True
+    ))
+    num = list(container.query_items(
+        query="SELECT VALUE COUNT(1) FROM hehe",
+        enable_cross_partition_query=True
+        ))
+    n = num[0]   
+    print(num)
+    for i in range(n):
+        print('Item queried by Partition Key {0}'.format(items[i].get("id")))
+
+
 if __name__ == '__main__':
 #Run the application
     app.run()

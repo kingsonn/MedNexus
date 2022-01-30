@@ -292,6 +292,7 @@
                 </div>
                 <hr>
                 <div>
+                    <p style="text-align:center;margin:0px;background: #091017;padding: 5px;border-radius: 18px;margin: 10px;">{{result}}</p>
                     <form class="forminp" action="/bcamp" method="POST">
                         <div >
                             <label for="bname">Blood Bank Name:</label>
@@ -347,8 +348,7 @@
                         </div>
 
                        
-                            <p>{{result}}</p>
-                        
+                          
                         <button class="submitbtn" type="submit" value="submit">Register</button>
 
                     </form>
@@ -362,8 +362,9 @@
                 <div style="margin-left: 10px;">
                     Register and request donors to connect to nearby potential donors with rare blood types in real time.
                 </div>
-                <br>
+                <p style="text-align:center;margin:0px;background: #091017;padding: 5px;border-radius: 18px;margin: 10px;">{{result1}}</p>
                 <div>
+                    <p style="text-align:center; margin:0px;"><u>{{result2}}</u></p>
                     <form class="forminp" action="/reqcd" method="post">
                         <div>
                             <label for="email">Registered Email ID:</label>
@@ -377,7 +378,6 @@
                             <label for="message"> <u>Message for the donors:</u> </label> <br> <br>
                         <textarea style="font-size: x-large;" name="message" id="message" cols="45" rows="6"></textarea>
                         </div>
-                        <p>{{result2}}</p>
                         <div style="text-align: center;">
                             <button class="submitbtn" type="submit" value="submit">Request</button>
                         </div>
