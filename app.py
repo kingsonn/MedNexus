@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from xml.etree.ElementTree import tostring
 from sklearn.preprocessing import StandardScaler
 import azure.cosmos.documents as documents
 import azure.cosmos.cosmos_client as cosmos_client
@@ -546,7 +547,7 @@ def reqcdform():
                 }
                 response = requests.post(url, headers=headers, json= payload)
                 print(response.status_code)
-            return render_template('bcamp.html', result2 = "Your request was sent to "+ pdonors + " donors in your state.")
+            return render_template('bcamp.html', result1 = "Your request was sent to "+ str(pdonors) + " donors in your state.")
     return render_template('bcamp.html')
 def check_email(cont):
     print('\nQuerying for an  Item by Partition Key\n')
