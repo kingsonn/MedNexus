@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        img {
+            pointer-events: none;
+            /* doing this makes sure .elementFromPoint 
+               do not acquires the image cursor object */
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <img id="cursor" src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20200319212118/cursor2.png" 
+         width="15" height="20" />
+    <button style="font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100%; border-radius: 10px;background: #94cae3; margin: 10px 0px;"
+          id="start-camera">Start Camera 📷</button>
+        <video style="display: none;" id="video" width="100%" height="240" autoplay></video>
+        <canvas id="canvas" style="display: none;" width="320" height="240"></canvas>
+        <button style="font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100%; border-radius: 10px;background: #94cae3; margin: 10px 0px; "
+          id="stop">Stop Camera ❌</button>
+
+
+
+
+          <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
+            <script>
+                var x, y;
+        var px, py;
+        px = py = 0;
+        
+        // Image of cursor
+        var cursor = document.getElementById("cursor"); 
+              var score;
+              var evalu;
+        
+              let camera_button = document.querySelector("#start-camera");
+              let video = document.querySelector("#video");
+              let click_button = document.querySelector("#click-photo");
+              let canvas = document.querySelector("#canvas");
+              let stopcam = document.querySelector("#stop");
+             
+           
+              camera_button.addEventListener('click', async function () {
+                let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+                video.srcObject = stream;
+                video.style.display = "block"
+             
+        
+                stopcam.addEventListener('click', async function () {
+                  stream.getTracks().forEach(function (track) {
+                    track.stop();
+                    video.style.display = "none"
+                    clearInterval(intervall);
+        
+                  });
+                });
+        
+                const intervall = setInterval(processImage, 3000);
+        
+              });
+              function getMax(obj) {
+                return Math.max.apply(null, Object.keys(obj));
+              };
+              makeblob = function (dataURL) {
+                var BASE64_MARKER = ';base64,';
+                if (dataURL.indexOf(BASE64_MARKER) == -1) {
+                  var parts = dataURL.split(',');
+                  var contentType = parts[0].split(':')[1];
+                  var raw = decodeURIComponent(parts[1]);
+                  return new Blob([raw], { type: contentType });
+                }
+                var parts = dataURL.split(BASE64_MARKER);
+                var contentType = parts[0].split(':')[1];
+                var raw = window.atob(parts[1]);
+                var rawLength = raw.length;
+        
+                var uInt8Array = new Uint8Array(rawLength);
+        
+                for (var i = 0; i < rawLength; ++i) {
+                  uInt8Array[i] = raw.charCodeAt(i);
+                }
+        
+                return new Blob([uInt8Array], { type: contentType });
+              }
+        
+              function processImage() {
+                canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+                let image_data_url = canvas.toDataURL();
+        
+                var subscriptionKey = "3771a692d85b4ec296868a1150c42150";
+                var uriBase =
+                  "https://facefac.cognitiveservices.azure.com/face/v1.0/detect?overload=stream&returnFaceAttributes=age,gender,emotion,headPose,smile,occlusion&recognitionModel=recognition_01&returnRecognitionModel=True&detectionModel=detection_01";
+        
+        
+        
+        
+        
+        
+                // Perform the REST API call.
+                $.ajax({
+                  url: uriBase,
+        
+                  // Request headers.
+                  beforeSend: function (xhrObj) {
+                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+                  },
+                  processData: false,
+                  contentType: 'application/octet-stream',
+                  type: "POST",
+        
+                  // Request body.
+                  data: makeblob(image_data_url)
+                })
+        
+        
+                  .done(function (data) {
+                    // Show formatted JSON on webpage.
+                    console.log(data)
+                    console.log(JSON.parse(JSON.stringify(data))[0].faceAttributes.smile)
+                    console.log(JSON.parse(JSON.stringify(data))[0].faceAttributes.occlusion.mouthOccluded)
+                    var m = JSON.parse(JSON.stringify(data))[0].faceAttributes.smile
+                    var r = JSON.parse(JSON.stringify(data))[0].faceAttributes.headPose.roll
+                    var p = JSON.parse(JSON.stringify(data))[0].faceAttributes.headPose.pitch
+                    
+                   if(r>8){
+                       px = px + 40
+                    cursor.style.left = (px) + "px";
+
+                   }
+                   if(p<-8){
+                       py = py + 40
+                       cursor.style.top = (py) + "px";
+                   }
+                   if(m > 0.5)
+                   {
+                    var tmp = document.elementFromPoint(px,py); 
+                   
+                    tmp.click();
+                   }
+        
+                  
+                      
+               
+                   
+                  })
+        
+                  
+        
+                  .fail(function (jqXHR, textStatus, errorThrown) {
+                    // Display error message.
+                    var errorString = (errorThrown === "") ?
+                      "Error. " : errorThrown + " (" + jqXHR.status + "): ";
+                    errorString += (jqXHR.responseText === "") ?
+                      "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
+                        jQuery.parseJSON(jqXHR.responseText).message :
+                        jQuery.parseJSON(jqXHR.responseText).error.message;
+                    alert(errorString);
+                  });
+                
+              };
+          </script>
+</body>
+</html>
