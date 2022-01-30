@@ -526,10 +526,11 @@ def reqcdform():
 
         except exceptions.CosmosResourceExistsError:
             state = list(container.query_items(
-            query="SELECT r.state FROM r WHERE r.type='blood_bank' AND r.email=" + "'" + email + "'",
+            query="SELECT * FROM r WHERE r.type='blood_bank' AND r.email=" + "'" + email + "'",
             enable_cross_partition_query=True
         ))
-            
+            bname = state[0]['id']
+            num = state[0]['contact']
             bstate = state[0]['state']
             donors = list(container.query_items(
                 query="SELECT r.email FROM r WHERE r.type='donor' AND r.blood_group=" + "'" + bgroup + "'" + " AND  r.state=" + "'" + bstate + "'" ,
@@ -541,14 +542,50 @@ def reqcdform():
                 url = 'https://prod-04.northcentralus.logic.azure.com:443/workflows/55199d570fdc4f84b62e832fe7cd19e2/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=o5bwg3yLQIeXoqyKed4BJgFArAY0w1joDQkQWcQLjWk'
                 headers = {"Content-Type": "application/json"}
                 payload = {
+                    "name": bname,
                     "email": donors[i]['email'],
-                    "date": "4/1/2020",
-                    "task": "My new task"
+                    "number": num,
+                    "emailid": email,
+                    "message": message
                 }
                 response = requests.post(url, headers=headers, json= payload)
                 print(response.status_code)
             return render_template('bcamp.html', result1 = "Your request was sent to "+ str(pdonors) + " donors in your state.")
     return render_template('bcamp.html')
+@app.route('/reqdon')
+def reqdon():
+    return render_template('reqdon.html')
+
+@app.route('/reqdon', methods =["GET", "POST"])
+def reqdonform():
+    if request.method == "POST":
+        rname = request.form['name']
+        email = request.form['email']
+        bgroup = request.form['bcgroup']
+        message = request.form['message']
+        mobile = request.form['mobile']
+        state = request.form['stt']
+        donors = list(container.query_items(
+                query="SELECT r.email FROM r WHERE r.type='donor' AND r.blood_group=" + "'" + bgroup + "'" + " AND  r.state=" + "'" + state + "'" ,
+                enable_cross_partition_query=True
+                ))
+  
+        pdonors = len(donors)
+        for i in range(pdonors):
+            print(donors[i]['email'])
+            url = 'https://prod-12.northcentralus.logic.azure.com:443/workflows/f99c2ac4437845fdb2197e7eaa17d09c/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=sHqF7ZN7cFxz-tVx-eK1x3be4ghQ1IyZQO4v1q0B2PI'
+            headers = {"Content-Type": "application/json"}
+            payload = {
+                    "name": rname,
+                    "email": donors[i]['email'],
+                    "number": mobile,
+                    "emailid": email,
+                    "message": message
+                }
+            response = requests.post(url, headers=headers, json= payload)
+            print(response.status_code)
+        return render_template('reqdon.html', result = "Your request was sent to "+ str(pdonors) + " donors in your state.")
+    return render_template('reqdon.html')
 def check_email(cont):
     print('\nQuerying for an  Item by Partition Key\n')
 

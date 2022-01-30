@@ -300,9 +300,10 @@
                 </div>
                 <hr>
                 <div>
-                  <form class="forminp" action="{{ url_for('disease_prediction') }}" method="POST">
+                    <p style="text-align:center;margin:0px;background: #091017;padding: 5px;border-radius: 18px;margin: 10px;">{{result}}</p>
+                  <form class="forminp" action="/reqdon" method="POST">
                       <div class="form-group">
-                        <label for="name">First Name :</label>
+                        <label for="name">Name :</label>
                         <input type="name" name="name" id="name"  placeholder="Enter your Name" required>
                       </div>
                       <div>
