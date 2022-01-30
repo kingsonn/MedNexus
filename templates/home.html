@@ -392,19 +392,19 @@
         camera_button.addEventListener('click', async function () {
             let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
             video.srcObject = stream;
-            console.log(stream)
             video.style.display = "block"
-            
-
+         
+    
             stopcam.addEventListener('click', async function () {
-                stream.getTracks().forEach(function (track) {
-                    track.stop();
-                    video.style.display = "none"
-                
-                   
-
-                });
+              stream.getTracks().forEach(function (track) {
+                track.stop();
+                video.style.display = "none"
+                clearInterval(intervall);
+    
+              });
             });
+    
+            const intervall = setInterval(processImage, 3000);
           
             
 
@@ -437,14 +437,6 @@
         function processImage() {
             canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
             let image_data_url = canvas.toDataURL();
-
-            var subscriptionKey = "3771a692d85b4ec296868a1150c42150";
-            var uriBase =
-                "https://facefac.cognitiveservices.azure.com/face/v1.0/detect?overload=stream&returnFaceAttributes=age,gender,emotion&recognitionModel=recognition_01&returnRecognitionModel=True&detectionModel=detection_01";
-
-        
-
-            // Perform the REST API call.
             $.ajax({
                 url: "https://hahacv-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/9668de6b-ff5f-403a-a290-56f7fd49c677/classify/iterations/Iteration1/image",
 
