@@ -17,7 +17,6 @@ from hospitals import Hospitals
 import datetime
 import model as m
 import config
-import os
 import requests
 # Load ML model
 model_heart = pickle.load(open('heartmodel.pkl', 'rb')) 
@@ -547,7 +546,7 @@ def reqcdform():
                 }
                 response = requests.post(url, headers=headers, json= payload)
                 print(response.status_code)
-            return render_template('bcamp.html', result = "User already exists 😅")
+            return render_template('bcamp.html', result2 = "Your request was sent to "+ pdonors + " donors in your state.")
     return render_template('bcamp.html')
 def check_email(cont):
     print('\nQuerying for an  Item by Partition Key\n')
