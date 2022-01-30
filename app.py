@@ -17,8 +17,8 @@ from hospitals import Hospitals
 import datetime
 import model as m
 import config
-
-
+import os
+import requests
 # Load ML model
 model_heart = pickle.load(open('heartmodel.pkl', 'rb')) 
 model_diabetes = pickle.load(open('diabetesmodel.pkl', 'rb'))
@@ -535,8 +535,18 @@ def reqcdform():
                 query="SELECT r.email FROM r WHERE r.type='donor' AND r.blood_group=" + "'" + bgroup + "'" + " AND  r.state=" + "'" + bstate + "'" ,
                 enable_cross_partition_query=True
                 ))
-            
-            print(donors)
+            pdonors = len(donors)
+            for i in range(pdonors):
+                print(donors[i]['email'])
+                url = 'https://prod-04.northcentralus.logic.azure.com:443/workflows/55199d570fdc4f84b62e832fe7cd19e2/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=o5bwg3yLQIeXoqyKed4BJgFArAY0w1joDQkQWcQLjWk'
+                headers = {"Content-Type": "application/json"}
+                payload = {
+                    "email": donors[i]['email'],
+                    "date": "4/1/2020",
+                    "task": "My new task"
+                }
+                response = requests.post(url, headers=headers, json= payload)
+                print(response.status_code)
             return render_template('bcamp.html', result = "User already exists 😅")
     return render_template('bcamp.html')
 def check_email(cont):
