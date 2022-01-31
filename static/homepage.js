@@ -81,25 +81,28 @@ var phraseDiv;
                     function change(){
                         client.get(url+result.privText, function(response) {
                             if(JSON.parse(response).prediction.topIntent === "accessWebsite") {
-                                window.location.href = ("http://127.0.0.1:5000/diagnosis")
+                                window.location.href = ("https://mexus.azurewebsites.net/diagnosis")
                             }
                             if(JSON.parse(response).prediction.topIntent === "accessDoc") {
-                                window.location.href = ("http://127.0.0.1:5000/mental")
+                                window.location.href = ("https://mexus.azurewebsites.net/mentalhealth")
                             }
                             if(JSON.parse(response).prediction.topIntent === "accessconsult") {
-                                window.location.href = ("http://127.0.0.1:5000/consultation")
+                                window.location.href = ("https://mexus.azurewebsites.net/consultation")
                             }
                             if(JSON.parse(response).prediction.topIntent === "emotiondetect") {
-                                window.location.href = ("http://127.0.0.1:5000/emotion")
+                                window.location.href = ("https://mexus.azurewebsites.net/emotion")
                             }
                             if(JSON.parse(response).prediction.topIntent === "goBack") {
-                                window.location.href = ("http://127.0.0.1:5000/")
+                                window.location.href = ("https://mexus.azurewebsites.net/")
                             }
                             if(JSON.parse(response).prediction.topIntent === "heartdisease") {
-                                window.location.href = ("http://127.0.0.1:5000/heartdisease")
+                                window.location.href = ("https://mexus.azurewebsites.net/heartdisease")
                             }
                             if(JSON.parse(response).prediction.topIntent === "skincancer") {
-                                window.location.href = ("http://127.0.0.1:5000/skincancer")
+                                window.location.href = ("https://mexus.azurewebsites.net/skincancer")
+                            }
+                            if(JSON.parse(response).prediction.topIntent === "blooddonation") {
+                                window.location.href = ("https://mexus.azurewebsites.net/bdonation")
                             }
             
                         });
