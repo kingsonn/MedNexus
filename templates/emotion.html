@@ -415,12 +415,12 @@
 
       
     </div>
-    <button style="font-size: xx-large;  width: 95%; border-radius: 10px;background: #94cae3; margin: 10px 2.5%; "
+    <button onclick="resultss()" style="font-size: xx-large;  width: 95%; border-radius: 10px;background: #94cae3; margin: 10px 2.5%; "
     id="stop">Generate Report</button>
-    <div class="container3">
-      <div style="width: 170%;" class="card">
+    <div id="finalrepp" style="display:none;" class="container3">
+      <div style="width: 95%;" class="card">
 
-        <div style="text-align: center;" class="cardtitle">
+        <div style="text-align: center;"  class="cardtitle">
           <span>Mental Health Report</span>
       </div>
       <hr>
@@ -963,6 +963,12 @@
                   });
                 
               };
+      }
+    </script>
+    <script>
+      function resultss(){
+        var frep = document.getElementById("finalrepp")
+        frep.style.display="block"
       }
     </script>
 </body>

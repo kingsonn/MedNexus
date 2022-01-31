@@ -14,36 +14,29 @@
             background-color: black;
             
         }
+        .navbar div a h1{
+            font-size:xxx-large;
+            font-family: 'Montserrat';
+            font-weight: normal;
+            color: rgb(243, 234, 234);
+            text-align: center;
+            margin:  0;
+
+            text-align: center;
+          }
+          
         .navbar{
-            display: flex;
+            
             background-color: #000000;;
             margin: 0px;
             padding: 6px;
+            position: fixed;
+            width: 100%;
         }
-        #logo{
-            width: 50px;
-            
-        }
-        .navbar ul{
-            display: flex;
-            margin: 0px 0px;
-        }
-        .navbar ul li{
-            text-decoration: none;
-            margin: 2px 15px;
-            list-style: none;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
+       
+        
         .navbar div{
             margin: 0px 0px;
-        }
-        .navbar div h1{
-            margin: 0px 0px;
-            margin-right: 0px;
-            font-size: 50px;
-            font-family: 'Orbitron', sans-serif;
-            color:white;
-            padding-left: 10px;
         }
         .info{
             margin: 0px 0px;
@@ -96,7 +89,7 @@
             width:100%
         }
         .infopic{
-            width: 25%;
+            width: 15%;
         }
         .container1::before{
             background: url('/static/AdobeStock_328915018.jpeg') fixed;
@@ -130,26 +123,126 @@
             color: white;
             padding: 5px 15px;
         }
+        #page-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+          
+          #title {
+            color: #f6f6f6;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+          }
+          
+          #btn {
+              margin: 9px;
+            position: fixed;
+            z-index: 5;
+            top: 15px;
+            left: 15px;
+            cursor: pointer;
+            transition: left 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+          }
+          #btn div {
+            width: 35px;
+            height: 2px;
+            margin-bottom: 8px;
+            background-color: #00DFFC;
+            transition: transform 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91), opacity 500ms, background-color 250ms;
+          }
+          
+          #btn.active {
+            left: 230px;
+          }
+          #btn.active div {
+            background-color: #343838;
+          }
+          #btn.active #top {
+            transform: translateY(10px) rotate(-135deg);
+          }
+          #btn.active #middle {
+            opacity: 0;
+            transform: rotate(135deg);
+          }
+          #btn.active #bottom {
+            transform: translateY(-10px) rotate(-45deg);
+          }
+          
+          #box {
+            position: fixed;
+            z-index: 4;
+            overflow: auto;
+            top: 0px;
+            left: -275px;
+            width: 275px;
+            opacity: 0;
+            padding: 20px 0px;
+            height: 100%;
+            background-color: #f6f6f6;
+            color: #343838;
+            transition: all 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+          }
+          
+          #box.active {
+            left: 0px;
+            opacity: 1;
+          }
+          
+          #items {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          #items .item {
+            position: relative;
+            cursor: pointer;
+            font-size: 2em;
+            padding: 15px 30px;
+            transition: all 250ms;
+          }
+          #items .item:hover {
+            padding: 15px 45px;
+            background-color: rgba(52, 56, 56, 0.2);
+          }
+          
+          #btn, #btn * {
+            will-change: transform;
+          }
+          
+          #box {
+            will-change: transform, opacity;
+          }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <!-- <div class="logo">
-            <img id="logo" src="/Static/symbol-26228_1280.png" alt="">
-        </div> -->
+
+        <div id="btn">
+            <div id='top'></div>
+            <div id='middle'></div>
+            <div id='bottom'></div>
+        </div>
+        <div id="box">
+            <div id="items">
+                <div class="item">Item 1</div>
+                <div class="item">Item 2</div>
+                <div class="item">Item 3</div>
+                <div class="item">Item 4</div>
+                <div class="item">Item 5</div>
+            </div>
+        </div>
         <div>
-            <a style="text-decoration: none;" href="/"><h1>MedNexus: Solutions for healthcare</h1></a> 
+            <a  style="text-decoration: none;" href="/"><h1 id="t1">MedNexus | Diagnosis</h1></a> 
          </div>
-        <!-- <div>
-            <ul>
-                <li>Home</li>
-                <li>About</li>
-                <li>Diagnosis</li>
-                <li>Consultation</li>
-                <li>Contact</li>
-            </ul>
-        </div> -->
+      
     </nav>
+    <br><br><br>
     <div class="infoo">
         <div class="infopic">
             <img src="/static/boy-2027768.png" alt="">
@@ -299,5 +392,5 @@
     <div id="copyright" style="background-color: black; color: white; text-align: center;">
         Copyright &copy; Hanson Braganza. All rights reserved!
     </div> 
-  
+  <script src="/static/nav.js"></script>
 </html>
