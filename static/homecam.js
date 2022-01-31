@@ -71,16 +71,16 @@ function processImage() {
             abc = data["predictions"][0]["tagName"];
            console.log(abc);
            if(data["predictions"][0]["tagName"] === "One"){
-            window.location.href = ("http://127.0.0.1:5000/diagnosis")
+            window.location.href = ("https://mexus.azurewebsites.net/diagnosis")
            }
            if(data["predictions"][0]["tagName"] === "Three" || abc === "Two"){
-            window.location.href = ("http://127.0.0.1:5000/mental")
+            window.location.href = ("https://mexus.azurewebsites.net/mentalhralth")
            }
            if(data["predictions"][0]["tagName"] === "Five"){
-            window.location.href = ("http://127.0.0.1:5000/bdonation")
+            window.location.href = ("https://mexus.azurewebsites.net/bdonation")
            }
            if(data["predictions"][0]["tagName"] === "Zero"){
-            window.location.href = ("http://127.0.0.1:5000/bdonation")
+            window.location.href = ("https://mexus.azurewebsites.net/bdonation")
            }
            
         })
