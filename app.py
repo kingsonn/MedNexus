@@ -604,22 +604,6 @@ def reqdonform():
             print(response.status_code)
         return render_template('reqdon.html', result = "Your request was sent to "+ str(pdonors) + " donors in your state.")
     return render_template('reqdon.html')
-def check_email(cont):
-    print('\nQuerying for an  Item by Partition Key\n')
-
-    items = list(cont.query_items(
-        query="SELECT r.email FROM r WHERE r.email= 'hansonnnnnnn@gmail.com'",
-       enable_cross_partition_query=True
-    ))
-    num = list(container.query_items(
-        query="SELECT VALUE COUNT(1) FROM hehe",
-        enable_cross_partition_query=True
-        ))
-    n = num[0]   
-    print(num)
-    for i in range(n):
-        print('Item queried by Partition Key {0}'.format(items[i].get("id")))
-
 
 if __name__ == '__main__':
 #Run the application

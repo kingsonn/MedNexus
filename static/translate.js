@@ -33,6 +33,7 @@ document.getElementById("trans").addEventListener('change',function(e){
     var t14 = document.getElementById('t14')
     var t15 = document.getElementById('t15')
     var t16 = document.getElementById('t16')
+    var t17 = document.getElementById('t17')
     
     
    function esp(){
@@ -47,7 +48,7 @@ document.getElementById("trans").addEventListener('change',function(e){
            xhrObj.setRequestHeader("Content-Type","application/json; charset=UTF-8");
        },
        type: "POST",
-       data: "[{'Text':"+ "'" +t1.innerHTML + "'" +" }, {'Text':"+ "'" + t2.innerHTML + "'" +"}, {'Text':"+ "'" + t3.innerHTML + "'" +"}, {'Text':"+ "'" + t4.innerHTML + "'" +"}, {'Text':"+ "'" + t5.innerHTML + "'" +"}, {'Text':"+ "'" + t6.innerHTML + "'" +"}, {'Text':"+ "'" + t7.innerHTML + "'" +"}, {'Text':"+ "'" + t8.innerHTML + "'" +"}, {'Text':"+ "'" + t9.innerHTML + "'" +"}, {'Text':"+ "'" + t10.innerHTML + "'" +"}, {'Text':"+ "'" + t11.innerHTML + "'" +"}, {'Text':"+ "'" + t12.innerHTML + "'" +"}, {'Text':"+ "'" + t13.innerHTML + "'" +"}, {'Text':"+ "'" + t14.innerHTML + "'" +"}, {'Text':"+ "'" + t15.innerHTML + "'" +"}, {'Text':"+ "'" + t16.innerHTML + "'" +"}]"
+       data: "[{'Text':"+ "'" +t1.innerHTML + "'" +" }, {'Text':"+ "'" + t2.innerHTML + "'" +"}, {'Text':"+ "'" + t3.innerHTML + "'" +"}, {'Text':"+ "'" + t4.innerHTML + "'" +"}, {'Text':"+ "'" + t5.innerHTML + "'" +"}, {'Text':"+ "'" + t6.innerHTML + "'" +"}, {'Text':"+ "'" + t7.innerHTML + "'" +"}, {'Text':"+ "'" + t8.innerHTML + "'" +"}, {'Text':"+ "'" + t9.innerHTML + "'" +"}, {'Text':"+ "'" + t10.innerHTML + "'" +"}, {'Text':"+ "'" + t11.innerHTML + "'" +"}, {'Text':"+ "'" + t12.innerHTML + "'" +"}, {'Text':"+ "'" + t13.innerHTML + "'" +"}, {'Text':"+ "'" + t14.innerHTML + "'" +"}, {'Text':"+ "'" + t15.innerHTML + "'" +"}, {'Text':"+ "'" + t16.innerHTML + "'" +"}, {'Text':"+ "'" + t17.innerHTML + "'" +"}]"
        
    })
    .done(function(data) {
@@ -68,6 +69,7 @@ document.getElementById("trans").addEventListener('change',function(e){
      t14.innerHTML =data[13].translations[0].text
      t15.innerHTML =data[14].translations[0].text
      t16.innerHTML =data[15].translations[0].text
+     t17.innerHTML =data[16].translations[0].text
     
    })
    .fail(function() {
@@ -88,7 +90,7 @@ document.getElementById("trans").addEventListener('change',function(e){
            xhrObj.setRequestHeader("Content-Type","application/json; charset=UTF-8");
        },
        type: "POST",
-       data: "[{'Text':"+ "'" +t1.innerHTML + "'" +" }, {'Text':"+ "'" + t2.innerHTML + "'" +"}, {'Text':"+ "'" + t3.innerHTML + "'" +"}, {'Text':"+ "'" + t4.innerHTML + "'" +"}, {'Text':"+ "'" + t5.innerHTML + "'" +"}, {'Text':"+ "'" + t6.innerHTML + "'" +"}, {'Text':"+ "'" + t7.innerHTML + "'" +"}, {'Text':"+ "'" + t8.innerHTML + "'" +"}, {'Text':"+ "'" + t9.innerHTML + "'" +"}, {'Text':"+ "'" + t10.innerHTML + "'" +"}, {'Text':"+ "'" + t11.innerHTML + "'" +"}, {'Text':"+ "'" + t12.innerHTML + "'" +"}, {'Text':"+ "'" + t13.innerHTML + "'" +"}, {'Text':"+ "'" + t14.innerHTML + "'" +"}, {'Text':"+ "'" + t15.innerHTML + "'" +"}, {'Text':"+ "'" + t16.innerHTML + "'" +"}]"
+       data: "[{'Text':"+ "'" +t1.innerHTML + "'" +" }, {'Text':"+ "'" + t2.innerHTML + "'" +"}, {'Text':"+ "'" + t3.innerHTML + "'" +"}, {'Text':"+ "'" + t4.innerHTML + "'" +"}, {'Text':"+ "'" + t5.innerHTML + "'" +"}, {'Text':"+ "'" + t6.innerHTML + "'" +"}, {'Text':"+ "'" + t7.innerHTML + "'" +"}, {'Text':"+ "'" + t8.innerHTML + "'" +"}, {'Text':"+ "'" + t9.innerHTML + "'" +"}, {'Text':"+ "'" + t10.innerHTML + "'" +"}, {'Text':"+ "'" + t11.innerHTML + "'" +"}, {'Text':"+ "'" + t12.innerHTML + "'" +"}, {'Text':"+ "'" + t13.innerHTML + "'" +"}, {'Text':"+ "'" + t14.innerHTML + "'" +"}, {'Text':"+ "'" + t15.innerHTML + "'" +"}, {'Text':"+ "'" + t16.innerHTML + "'" +"}, {'Text':"+ "'" + t17.innerHTML + "'" +"}]"
        
    })
    .done(function(data) {
@@ -109,6 +111,7 @@ document.getElementById("trans").addEventListener('change',function(e){
      t14.innerHTML =data[13].translations[0].text
      t15.innerHTML =data[14].translations[0].text
      t16.innerHTML =data[15].translations[0].text
+     t17.innerHTML =data[16].translations[0].text
     
    })
    .fail(function() {
@@ -128,7 +131,7 @@ document.getElementById("trans").addEventListener('change',function(e){
            xhrObj.setRequestHeader("Content-Type","application/json; charset=UTF-8");
        },
        type: "POST",
-       data: "[{'Text':"+ "'" +t1.innerHTML + "'" +" }, {'Text':"+ "'" + t2.innerHTML + "'" +"}, {'Text':"+ "'" + t3.innerHTML + "'" +"}, {'Text':"+ "'" + t4.innerHTML + "'" +"}, {'Text':"+ "'" + t5.innerHTML + "'" +"}, {'Text':"+ "'" + t6.innerHTML + "'" +"}, {'Text':"+ "'" + t7.innerHTML + "'" +"}, {'Text':"+ "'" + t8.innerHTML + "'" +"}, {'Text':"+ "'" + t9.innerHTML + "'" +"}, {'Text':"+ "'" + t10.innerHTML + "'" +"}, {'Text':"+ "'" + t11.innerHTML + "'" +"}, {'Text':"+ "'" + t12.innerHTML + "'" +"}, {'Text':"+ "'" + t13.innerHTML + "'" +"}, {'Text':"+ "'" + t14.innerHTML + "'" +"}, {'Text':"+ "'" + t15.innerHTML + "'" +"}, {'Text':"+ "'" + t16.innerHTML + "'" +"}]"
+       data: "[{'Text':"+ "'" +t1.innerHTML + "'" +" }, {'Text':"+ "'" + t2.innerHTML + "'" +"}, {'Text':"+ "'" + t3.innerHTML + "'" +"}, {'Text':"+ "'" + t4.innerHTML + "'" +"}, {'Text':"+ "'" + t5.innerHTML + "'" +"}, {'Text':"+ "'" + t6.innerHTML + "'" +"}, {'Text':"+ "'" + t7.innerHTML + "'" +"}, {'Text':"+ "'" + t8.innerHTML + "'" +"}, {'Text':"+ "'" + t9.innerHTML + "'" +"}, {'Text':"+ "'" + t10.innerHTML + "'" +"}, {'Text':"+ "'" + t11.innerHTML + "'" +"}, {'Text':"+ "'" + t12.innerHTML + "'" +"}, {'Text':"+ "'" + t13.innerHTML + "'" +"}, {'Text':"+ "'" + t14.innerHTML + "'" +"}, {'Text':"+ "'" + t15.innerHTML + "'" +"}, {'Text':"+ "'" + t16.innerHTML + "'" +"}, {'Text':"+ "'" + t17.innerHTML + "'" +"}]"
        
    })
    .done(function(data) {
@@ -149,6 +152,7 @@ document.getElementById("trans").addEventListener('change',function(e){
      t14.innerHTML =data[13].translations[0].text
      t15.innerHTML =data[14].translations[0].text
      t16.innerHTML =data[15].translations[0].text
+     t17.innerHTML =data[16].translations[0].text
     
    })
    .fail(function() {
@@ -168,7 +172,7 @@ document.getElementById("trans").addEventListener('change',function(e){
            xhrObj.setRequestHeader("Content-Type","application/json; charset=UTF-8");
        },
        type: "POST",
-       data: "[{'Text':"+ "'" +t1.innerHTML + "'" +" }, {'Text':"+ "'" + t2.innerHTML + "'" +"}, {'Text':"+ "'" + t3.innerHTML + "'" +"}, {'Text':"+ "'" + t4.innerHTML + "'" +"}, {'Text':"+ "'" + t5.innerHTML + "'" +"}, {'Text':"+ "'" + t6.innerHTML + "'" +"}, {'Text':"+ "'" + t7.innerHTML + "'" +"}, {'Text':"+ "'" + t8.innerHTML + "'" +"}, {'Text':"+ "'" + t9.innerHTML + "'" +"}, {'Text':"+ "'" + t10.innerHTML + "'" +"}, {'Text':"+ "'" + t11.innerHTML + "'" +"}, {'Text':"+ "'" + t12.innerHTML + "'" +"}, {'Text':"+ "'" + t13.innerHTML + "'" +"}, {'Text':"+ "'" + t14.innerHTML + "'" +"}, {'Text':"+ "'" + t15.innerHTML + "'" +"}, {'Text':"+ "'" + t16.innerHTML + "'" +"}]"
+       data: "[{'Text':"+ "'" +t1.innerHTML + "'" +" }, {'Text':"+ "'" + t2.innerHTML + "'" +"}, {'Text':"+ "'" + t3.innerHTML + "'" +"}, {'Text':"+ "'" + t4.innerHTML + "'" +"}, {'Text':"+ "'" + t5.innerHTML + "'" +"}, {'Text':"+ "'" + t6.innerHTML + "'" +"}, {'Text':"+ "'" + t7.innerHTML + "'" +"}, {'Text':"+ "'" + t8.innerHTML + "'" +"}, {'Text':"+ "'" + t9.innerHTML + "'" +"}, {'Text':"+ "'" + t10.innerHTML + "'" +"}, {'Text':"+ "'" + t11.innerHTML + "'" +"}, {'Text':"+ "'" + t12.innerHTML + "'" +"}, {'Text':"+ "'" + t13.innerHTML + "'" +"}, {'Text':"+ "'" + t14.innerHTML + "'" +"}, {'Text':"+ "'" + t15.innerHTML + "'" +"}, {'Text':"+ "'" + t16.innerHTML + "'" +"}, {'Text':"+ "'" + t17.innerHTML + "'" +"}]"
        
    })
    .done(function(data) {
@@ -189,6 +193,7 @@ document.getElementById("trans").addEventListener('change',function(e){
      t14.innerHTML =data[13].translations[0].text
      t15.innerHTML =data[14].translations[0].text
      t16.innerHTML =data[15].translations[0].text
+     t17.innerHTML =data[16].translations[0].text
     
    })
    .fail(function() {

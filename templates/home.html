@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,66 +11,78 @@
     <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
     <script src="/static/homepage.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600&family=Orbitron:wght@500&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600&family=Orbitron:wght@500&family=Roboto+Condensed:wght@300&display=swap"
+        rel="stylesheet">
     <style>
-        body{
+        body {
             margin: 0px;
             background-color: black;
-            
-            
+
+
         }
-        .navbar div a h1{
-            font-size:xxx-large;
+
+        .navbar div a h1 {
+            font-size: xxx-large;
             font-family: 'Montserrat';
             font-weight: normal;
             color: rgb(243, 234, 234);
             text-align: center;
-            margin:  0;
+            margin: 0;
 
             text-align: center;
-          }
-          
-        .navbar{
-            
-            background-color: #000000;;
+        }
+
+        .navbar {
+
+            background-color: #000000;
+            ;
             margin: 0px;
             padding: 6px;
             position: fixed;
             width: 100%;
         }
-       
-        
-        .navbar div{
+
+
+        .navbar div {
             margin: 0px 0px;
         }
-        .info{
+
+        .info {
             margin: 0px 0px;
             margin-right: 0px;
             font-size: 60px;
             font-family: 'Cinzel', serif;
-            color:white;
+            color: white;
             padding: 10px 10px;
         }
-        .navbar::before{
-            background: url('/static/AdobeStock_328915018.jpeg') ;
+
+        .navbar::before {
+            background: url('/static/AdobeStock_328915018.jpeg');
             content: "";
             position: absolute;
-            top:0;
+            top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
             opacity: 0.3;
         }
-        #imgg{
+
+        #imgg {
             width: 100%;
         }
-        .container1, .container2, .container3, .container4{
+
+        .container1,
+        .container2,
+        .container3,
+        .container4 {
             display: flex;
 
-            
+
         }
-        .card{
+
+        .card {
             border: solid black;
             width: 100%;
             margin: 13px;
@@ -79,99 +92,117 @@
             color: white;
 
         }
-        .card:hover{
+
+        .card:hover {
             background-color: #04304bbd;
             cursor: pointer;
         }
-        .infoo{
+
+        .infoo {
             padding: 10px;
             display: flex;
 
         }
-        .infoo img{
+
+        .infoo img {
             width: 100%;
         }
-        .infotext{
-            width:100%
+
+        .infotext {
+            width: 100%
         }
-        .infopic{
+
+        .infopic {
             width: 15%;
         }
-        .container1::before{
+
+        .container1::before {
             background: url('/static/AdobeStock_328915018.jpeg') fixed;
             content: "";
             position: absolute;
-            top:0;
+            top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
             opacity: 0.2;
         }
-        .cardtitle{
+
+        .cardtitle {
             font-size: 50px;
             padding-left: 10px;
             font-family: 'Orbitron', sans-serif;
         }
-        .cardinfo{
+
+        .cardinfo {
             padding: 10px;
         }
-        .container1 a, .container2 a, .container3 a, .container4 a{
+
+        .container1 a,
+        .container2 a,
+        .container3 a,
+        .container4 a {
             text-decoration: none;
             color: white;
         }
+
         #page-wrapper {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-          }
-          
-          #title {
+        }
+
+        #title {
             color: #f6f6f6;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 2em;
-          }
-          
-          #btn {
-              margin: 9px;
+        }
+
+        #btn {
+            margin: 9px;
             position: fixed;
             z-index: 5;
             top: 15px;
             left: 15px;
             cursor: pointer;
             transition: left 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
-          }
-          #btn div {
+        }
+
+        #btn div {
             width: 35px;
             height: 2px;
             margin-bottom: 8px;
             background-color: #00DFFC;
             transition: transform 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91), opacity 500ms, background-color 250ms;
-          }
-          
-          #btn.active {
+        }
+
+        #btn.active {
             left: 230px;
-          }
-          #btn.active div {
+        }
+
+        #btn.active div {
             background-color: #343838;
-          }
-          #btn.active #top {
+        }
+
+        #btn.active #top {
             transform: translateY(10px) rotate(-135deg);
-          }
-          #btn.active #middle {
+        }
+
+        #btn.active #middle {
             opacity: 0;
             transform: rotate(135deg);
-          }
-          #btn.active #bottom {
+        }
+
+        #btn.active #bottom {
             transform: translateY(-10px) rotate(-45deg);
-          }
-          
-          #box {
+        }
+
+        #box {
             position: fixed;
             z-index: 4;
             overflow: auto;
@@ -184,39 +215,43 @@
             background-color: #f6f6f6;
             color: #343838;
             transition: all 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
-          }
-          
-          #box.active {
+        }
+
+        #box.active {
             left: 0px;
             opacity: 1;
-          }
-          
-          #items {
+        }
+
+        #items {
             position: relative;
             top: 50%;
             transform: translateY(-50%);
-          }
-          #items .item {
+        }
+
+        #items .item {
             position: relative;
             cursor: pointer;
             font-size: 2em;
             padding: 15px 30px;
             transition: all 250ms;
-          }
-          #items .item:hover {
+        }
+
+        #items .item:hover {
             padding: 15px 45px;
             background-color: rgba(52, 56, 56, 0.2);
-          }
-          
-          #btn, #btn * {
+        }
+
+        #btn,
+        #btn * {
             will-change: transform;
-          }
-          
-          #box {
+        }
+
+        #box {
             will-change: transform, opacity;
-          }
+        }
     </style>
 </head>
+
 <body>
     <nav class="navbar">
 
@@ -235,165 +270,196 @@
             </div>
         </div>
         <div>
-            <a  style="text-decoration: none;" href="/"><h1 id="t1">MedNexus | Home</h1></a> 
-         </div>
-      
+            <a style="text-decoration: none;" href="/">
+                <h1 id="t1">MedNexus | Home</h1>
+            </a>
+        </div>
+
     </nav>
     <br><br><br>
     <div class="infoo">
         <div style="margin-right: 20px;" class="infopic">
-            <img  src="/static/boy-2027768.png" alt="">
+            <img src="/static/boy-2027768.png" alt="">
         </div>
-        
+
         <div class="infotext">
             <div id="t2" style="padding-bottom: 0px;" class="info">Welcome!!</div>
-            <div id="t3" style="padding-top: 0px; font-size: 40px;" class="info">We provide healthcare solutions for both mental and physical well being</div>
+            <div id="t3" style="padding-top: 0px; font-size: 40px;" class="info">We provide healthcare solutions for
+                both mental and physical well being</div>
             <div id="warning">
-                <h1 style="font-weight:500;">Speech Recognition Speech SDK not found (microsoft.cognitiveservices.speech.sdk.bundle.js missing).</h1>
-              </div>
-              
-              <div id="content" style="display:flex">
-                
-                  
-                   <input style="display: none;" id="subscriptionKey" type="text" size="40" value="5795218c08664bc795cd964d7bfdf5a4">
-                 
+                <h1 style="font-weight:500;">Speech Recognition Speech SDK not found
+                    (microsoft.cognitiveservices.speech.sdk.bundle.js missing).</h1>
+            </div>
+
+            <div id="content" style="display:flex">
+
+
+                <input style="display: none;" id="subscriptionKey" type="text" size="40"
+                    value="5795218c08664bc795cd964d7bfdf5a4">
+
                 <input style="display: none;" id="serviceRegion" type="text" size="40" value="eastus">
-                <button  style="font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; "    id="startRecognizeOnceAsyncButton">Dr. Medico 🔊</button>
-                   <textarea style="display: none;" id="phraseDiv" style="display: inline-block;width:500px;height:200px"></textarea>
-                <button  style="font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; " id="start-camera">Sign Language 📷</button>
-                <video  style="display: none ; " id="video" width="20" height="20" autoplay></video>
-                <button style="display: none;font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; margin:10px; " id="click-photo" onclick="processImage()">Analyze</button>
+                <button style="font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; "
+                    id="startRecognizeOnceAsyncButton">Dr. Medico 🔊</button>
+                <textarea style="display: none;" id="phraseDiv"
+                    style="display: inline-block;width:500px;height:200px"></textarea>
+                <button style="font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; "
+                    id="start-camera">Sign Language 📷</button>
+                <video style="display: none ; " id="video" width="20" height="20" autoplay></video>
+                <button
+                    style="display: none;font-size: larger; width: 245px; border-radius: 10px;background: #94cae3; margin:10px; "
+                    id="click-photo" onclick="processImage()">Analyze</button>
                 <canvas id="canvas" style="display: none;" width="320" height="240"></canvas>
-                <button  style="display: none;font-size:larger;  border-radius: 10px;background: #94cae3; " id="stop">❌</button>
+                <button style="display: none;font-size:larger;  border-radius: 10px;background: #94cae3; "
+                    id="stop">❌</button>
                 <select style="
                 font-size: x-large;
                 border-radius: 10px;
                 background: #94cae3;" name="trans" id="trans">
                     <option value="en">English</option>
                     <option value="hi">Hindi</option>
-                    <option  value="es">Spanish</option>
+                    <option value="es">Spanish</option>
                     <option value="zh-Hans">Mandarin</option>
                     <option value="fr">French</option>
                 </select>
-              </div>
+            </div>
 
         </div>
     </div>
-   
+
     <!-- <img id="imgg" src="/Static/AdobeStock_328915018.jpeg" alt=""> -->
     <div style="background-image: url(/static/AdobeStock_328915018.jpeg); background-image: fixed;">
         <div class="container1">
-           <a href="/"> <div class="card">
-                <div class="cardtitle">
-                    <span id="t4">About</span>
-                </div>
-                <hr>
-                <div id="t5" class="cardinfo">
-                    MedNexus addresses the opportunity of using AI and machine learning in risk prediction and consultation of diseases for improving efficiency. MedNexus functions as a virtual AI medical assistant. It can help people get a diagnosis of multiple diseases within a matter of seconds and provide people with proper consultancy. 
-                </div>
-            </a>
-            </div>
-            <a href="/diagnosis">
-                <div class="card">
-                    <div class="cardtitle">
-                        <span id="t14">Diagnosis</span>
-                    </div>
-                    <hr>
-                    <div id="t15" class="cardinfo">
-                        MedNexus provides an easy to use interface That facilitates multiple end-to-end disease detection models built using robust Machine Learning models which are trained on data of hundreds of patients diagnosed before from across the globe. By taking in inputs from the medical reports of the person we can predict whether a person has a high or low risk from suffering a particular disease. We also provide diagnosis with medical imaging for various life threatning diseases.
-                    </div>
-                   
-                </a>
-        
-            </div>
-           
-        </div>
-        <div class="container3">
-            <a href="/register"> <div class="card">
-                 <div class="cardtitle">
-                     <span id="t8">Medical help</span>
-                 </div>
-                 <hr>
-                 <div  id="t9" class="cardinfo">
-                    Do not worry about your symptoms. Here you can register yourself, predict a disease from your symptoms and directly book an appointment in your nearest hospital.  
-                 </div>
-             </a>
-             </div>
-             <a href="/mental">
-                 <div class="card">
-                     <div class="cardtitle">
-                     <span id="t10">Mental Health</span>
-                     </div>
-                     <hr>
-                     <div id="t11" class="cardinfo">
-                         Mental health refers to cognitive, behavioral, and emotional well-being. MedNexus through this feature helps individuals relieve stress and emotional baggage through simple yet fullfilling methods like art therapy, journal writing where you can get rid of negative thoughts by writing and deleting, and my favourite pet therapy.
-                     </div>
-                 </a>
-         
-             </div>
-            
-         </div> 
-         <div class="container4">
-            <a href="/Formpage"> <div class="card">
-                 <div class="cardtitle">
-                     <span id="t12">Insurance Predictor</span>
-                 </div>
-                 <hr>
-                 <div id="t13" class="cardinfo">
-                     This predictor tool uses advanced machine learning tools and data science algorithms to predict your medical insurance cost according to the input provided by you. This model comes with 90% accuracy in gradient boosting which tends to be most accurate among all of the rest used models. This model has been built with derived insights from beautiful and analytical data visualization of each and every feature.
-                 </div>
-             </a>
-             </div>
-             
-             <a href="/consultation">
-                <div class="card">
-                    <div class="cardtitle">
-                        <span id="t6">Quick Consultation</span>
-                        </div>
-                        <hr>
-                        <div id="t7" class="cardinfo">
-                            While it is cheaper to go on Google to self-diagnose rather than to visit a doctor, this often leads to inaccurate diagnosis and can be extremely dangerous as they might follow a wrong treatment plan or may not realize the severity of their condition. You can talk to Dr. Medico our AI doctor inorder to recieve better consultation.
-                        </div>  
-                </a>
-                </div>
-         </div> 
-        <div class="container2">
-            
-            
             <a href="/">
                 <div class="card">
                     <div class="cardtitle">
-                    <span>Decentalized EHR</span>
+                        <span id="t4">About</span>
                     </div>
                     <hr>
-                    <div class="cardinfo">
-                        Under Development🚧
+                    <div id="t5" class="cardinfo">
+                        MedNexus addresses the opportunity of using AI and machine learning in risk prediction and
+                        consultation of diseases for improving efficiency. MedNexus functions as a virtual AI medical
+                        assistant. It can help people get a diagnosis of multiple diseases within a matter of seconds
+                        and provide people with proper consultancy.
                     </div>
-                </a>
-        
-            </div>
-            <div class="card">  
+            </a>
+        </div>
+        <a href="/diagnosis">
+            <div class="card">
+                <div class="cardtitle">
+                    <span id="t6">Diagnosis</span>
+                </div>
+                <hr>
+                <div id="t7" class="cardinfo">
+                    MedNexus provides an easy to use interface That facilitates multiple end-to-end disease detection
+                    models built using robust Machine Learning models which are trained on data of hundreds of patients
+                    diagnosed before from across the globe. By taking in inputs from the medical reports of the person
+                    we can predict whether a person has a high or low risk from suffering a particular disease. We also
+                    provide diagnosis with medical imaging for various life threatning diseases.
+                </div>
+
+        </a>
+
+    </div>
+
+    </div>
+    <div class="container1">
+        <a href="/bdonation">
+            <div class="card">
+                <div class="cardtitle">
+                    <span id="t8">Blood Donation</span>
+                </div>
+                <hr>
+                <div id="t9" class="cardinfo">
+                    Register as a Blood donor and claim NFTs and rewards. Register as a blood bank and request donors whenever required. Make a request as an individual for donation directly. We help connect donors to blood banks/camps and to people in need. This will help save a lot of lives who are in urgent need of blood.
+                </div>
+        </a>
+    </div>
+    <a href="/mentalhealth">
+        <div class="card">
             <div class="cardtitle">
-                <span>Contact</span>
+                <span id="t10">Mental Health</span>
             </div>
             <hr>
-            <div id="t16" class="cardinfo">
-                Project built by: Hanson Braganza <br>
-                E-mail: hansonnnnnnn@gmail.com <br>
-                GIthub:  https://github.com/kingsonn <br>
-                Linkedin: https://www.linkedin.com/in/hanson-braganza-76975a222/ <br>
-                
-
+            <div id="t11" class="cardinfo">
+                Mental health refers to cognitive, behavioral, and emotional well-being. MedNexus through this feature
+                helps individuals relieve stress and emotional baggage through simple yet fullfilling methods like art
+                therapy, journal writing where you can get rid of negative thoughts by writing and deleting, and my
+                favourite pet therapy.
             </div>
-        
-        </div>
-        </div>
-        <button onclick="esp()">es</button>
+
+    </a>
+
+    </div>
+
+    </div>
+    <div class="container3">
+        <a href="/register">
+            <div class="card">
+                <div class="cardtitle">
+                    <span id="t12">Medical help</span>
+                </div>
+                <hr>
+                <div id="t13" class="cardinfo">
+                    Do not worry about your symptoms. Here you can register yourself, predict a disease from your
+                    symptoms and directly book an appointment in your nearest hospital.
+                </div>
+        </a>
+    </div>
+    <a href="/consultation">
+        <div class="card">
+            <div class="cardtitle">
+                <span id="t14">Quick Consultation</span>
+            </div>
+            <hr>
+            <div id="t15" class="cardinfo">
+                While it is cheaper to go on Google to self-diagnose rather than to visit a doctor, this often leads
+                to inaccurate diagnosis and can be extremely dangerous as they might follow a wrong treatment plan
+                or may not realize the severity of their condition. You can talk to Dr. Medico our AI doctor inorder
+                to recieve better consultation.
+            </div>
+    </a>
+
+    </div>
+
+    </div>
+    
+    <div class="container2">
+
+        <a href="/Formpage">
+            <div class="card">
+                <div class="cardtitle">
+                    <span id="t16">Insurance Predictor</span>
+                </div>
+                <hr>
+                <div id="t17" class="cardinfo">
+                    This predictor tool uses advanced machine learning tools and data science algorithms to predict your
+                    medical insurance cost according to the input provided by you. This model comes with 90% accuracy in
+                    gradient boosting which tends to be most accurate among all of the rest used models. This model has
+                    been built with derived insights from beautiful and analytical data visualization of each and every
+                    feature.
+                </div>
+        </a>
+    </div>
+    <a href="/">
+        <div class="card">
+            <div class="cardtitle">
+                <span>Decentalized EHR</span>
+            </div>
+            <hr>
+            <div class="cardinfo">
+                Under Development🚧
+            </div>
+    </a>
+
+    </div>
+
+    </div>
+   
     </div>
     <div id="copyright" style="background-color: black; color: white; text-align: center;">
         Copyright &copy; Hanson Braganza. All rights reserved!
     </div>
-    <script src="/static/nav.js"></script>  
+    <script src="/static/nav.js"></script>
     <script src="/static//homecam.js"></script>
     <script src="/static/translate.js"></script>
 
