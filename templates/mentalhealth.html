@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check in</title>
+    <title>MedNexus|Mental Health</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600&family=Orbitron:wght@500&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
@@ -62,24 +62,25 @@
         #imgg{
             width: 100%;
         }
-        .container1, .container2{
+        .container{
             display: flex;
-            justify-content: center;
-
+            flex-direction: column;
             
         }
         .card{
             border: solid black;
-            width: 120%;
-            margin: 13px;
+            width: 60%;
+            margin: 13px 20%;
             border-radius: 8px;
             font-size: 28px;
             background-color: #020c12bd;
             color: white;
-            padding: 10px;
 
         }
-     
+        .card:hover{
+            background-color: #04304bbd;
+            cursor: pointer;
+        }
         .infoo{
             padding: 10px;
             display: flex;
@@ -94,7 +95,7 @@
         .infopic{
             width: 15%;
         }
-        .container1::before{
+        .container::before{
             background: url('/static/AdobeStock_328915018.jpeg') fixed;
             content: "";
             position: absolute;
@@ -106,39 +107,17 @@
             opacity: 0.2;
         }
         .cardtitle{
-            margin-top: 5px;
-            font-size: 35px;
+          text-align: center;
+            font-size: 50px;
             padding-left: 10px;
-            text-align: center;
             font-family: 'Orbitron', sans-serif;
         }
-        .forminp button{
-          border-radius: 10px;
-          font-size: x-large;
-          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        .cardinfo{
+            padding: 10px;
         }
-        .container1 a, .container2 a{
+        .container a{
             text-decoration: none;
             color: white;
-        }
-        .forminp div{
-            padding: 10px 10px;
-        }
-        .submitbtn{
-            
-            font-size: 40px;
-            border-radius: 10px;
-            background-color: #1380c169;
-            color: white;
-            padding: 5px 15px;
-        }
-        .forminp{
-          text-align: center;
-        }
-        .forminp input{
-          text-align: center;
-          border-radius: 5px;
-          font-size: large;
         }
         #page-wrapper {
             position: absolute;
@@ -277,26 +256,49 @@
         </div>
         
         <div class="infotext">
-            <div style="padding-bottom: 0px;" class="info"> <u>Blood Donation</u> </div>
-            <div style="padding-top: 0px; font-size: 40px;" class="info">Register as a donor or a blood bank or make a request to the donors</div>
+            <div style="padding-bottom: 0px;" class="info">Mental Health</div>
+            <div style="padding-top: 0px; font-size: 40px;" class="info">Try our services to track your psycological state or relieve your stress</div>
         </div>
     </div>
    
     <!-- <img id="imgg" src="/Static/AdobeStock_328915018.jpeg" alt=""> -->
     <div style="background-image: url(/static/AdobeStock_328915018.jpeg); background-image: fixed;">
-        <div class="container1">
-            <div style="width: 60%;" class="card">
-
-                
-                    <button style="display:block; font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100%; border-radius: 10px;background: #94cae3; margin: 10px 0px; " ><a style="color: #000000;" href="/donor">Register as a Donor</a></button>
-                    <button style="display:block; font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100%; border-radius: 10px;background: #94cae3; margin: 10px 0px; " ><a style="color: #000000;" href="/bcamp">Register as a Blood Bank </a></button>
-                    <button style="display:block; font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100%; border-radius: 10px;background: #94cae3; margin: 10px 0px; " ><a style="color: #000000;" href="/reqdon">Make a request</a></button>
-         
-            </div>
+        <div class="container">
+           <a href="/emotion"> 
+             <div class="card">
+                <div class="cardtitle">
+                    <span>Emotion Analyser</span>
+                </div>
+                <hr>
+                <div class="cardinfo">
+                  <div>
+                    <img width="100%" src="/static/mjh-shikder-eDQo2u-Gzyk-unsplash.jpg" alt="">
+                  </div>
+                    Track your psycological state with remote video and audio sessions. Improve your mental state with our smile exercise.
+                </div>
+              </div>
+            </a>
+            <a href="/mental"> 
+              <div class="card">
+                 <div class="cardtitle">
+                     <span>Stress Buster Games</span>
+                 </div>
+                 <hr>
+                 <div class="cardinfo">
+                  <div>
+                    <img width="100%" src="/static/coffee-2847957_1280.jpg" alt="">
+                  </div>
+                  Try our stress buster games to imrove your mood, get rid of trauma or just relax.
+                 </div>
+               </div>
+             </a>
+            
+            
+        
+        </div>
     </div>
     <div id="copyright" style="background-color: black; color: white; text-align: center;">
         Copyright &copy; Hanson Braganza. All rights reserved!
     </div>
-    <script src="/static/nav.js"></script>
-</body>
+  <script src="/static/nav.js"></script>
 </html>

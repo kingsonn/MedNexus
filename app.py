@@ -270,6 +270,9 @@ def leukemia():
 @app.route('/malaria')
 def malaria():
     return render_template('malaria.html')
+@app.route('/bdonation')
+def bdonation():
+    return render_template('bdonation.html')
 
 @app.route('/skincancer')
 def skincancer():
@@ -474,6 +477,14 @@ def donorform():
             }
         try:
             container.create_item(body=order)
+            url = 'https://prod-21.northcentralus.logic.azure.com:443/workflows/ec85133b90be4217a9d7bb60ec75d615/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=sjD5-QDrbWSq-tciTCKRlz8n-LXVt95W3v1PtU68e80'
+            headers = {"Content-Type": "application/json"}
+            payload = {
+                    
+                    "email": email,
+                    
+                }
+            response = requests.post(url, headers=headers, json= payload)
             return render_template('donor.html', result = "Registered Successfully 👍")
 
         except exceptions.CosmosResourceExistsError:
