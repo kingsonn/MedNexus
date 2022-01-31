@@ -383,6 +383,9 @@ def book_appointment(hospital_name):
 @app.route('/thankyou')
 def thankyou():
     return(render_template('thankyou.html'))
+@app.route('/mentalhealth')
+def mentalhealth():
+    return(render_template('mentalhealth.html'))
 
 @app.route('/pet')
 def pet():
