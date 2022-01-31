@@ -255,6 +255,26 @@ def predictcancer():
 def pneumonia():
     return render_template("pneumonia.html")
 
+@app.route('/braintumor')
+def braintumor():
+    return render_template('braintumor.html')
+
+@app.route('/emotion')
+def emotion():
+    return render_template('emotion.html')
+
+@app.route('/leukemia')
+def leukemia():
+    return render_template('leukemia.html')
+
+@app.route('/malaria')
+def malaria():
+    return render_template('malaria.html')
+
+@app.route('/skincancer')
+def skincancer():
+    return render_template('skincancer.html')
+
 @app.route('/register' , methods = ['GET', 'POST'])
 def register():
     return render_template('register.html')
@@ -364,9 +384,7 @@ def thankyou():
 @app.route('/pet')
 def pet():
     return(render_template('pet.html'))
-@app.route('/emotion')
-def emotion():
-    return(render_template('emotion.html'))
+
 
 @app.route('/journal')
 def journal():
