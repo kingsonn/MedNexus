@@ -14,36 +14,29 @@
             background-color: black;
             
         }
+        .navbar div a h1{
+            font-size:xxx-large;
+            font-family: 'Montserrat';
+            font-weight: normal;
+            color: rgb(243, 234, 234);
+            text-align: center;
+            margin:  0;
+
+            text-align: center;
+          }
+          
         .navbar{
-            display: flex;
+            
             background-color: #000000;;
             margin: 0px;
             padding: 6px;
+            position: fixed;
+            width: 100%;
         }
-        #logo{
-            width: 50px;
-            
-        }
-        .navbar ul{
-            display: flex;
-            margin: 0px 0px;
-        }
-        .navbar ul li{
-            text-decoration: none;
-            margin: 2px 15px;
-            list-style: none;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
+       
+        
         .navbar div{
             margin: 0px 0px;
-        }
-        .navbar div h1{
-            margin: 0px 0px;
-            margin-right: 0px;
-            font-size: 50px;
-            font-family: 'Orbitron', sans-serif;
-            color:white;
-            padding-left: 10px;
         }
         .info{
             margin: 0px 0px;
@@ -98,7 +91,7 @@
             width:100%
         }
         .infopic{
-            width: 25%;
+            width: 15%;
         }
         .container1::before{
             background: url('/static/AdobeStock_328915018.jpeg') fixed;
@@ -123,26 +116,126 @@
         .cardinfo{
             padding: 10px;
         }
+        #page-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+          
+          #title {
+            color: #f6f6f6;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+          }
+          
+          #btn {
+              margin: 9px;
+            position: fixed;
+            z-index: 5;
+            top: 15px;
+            left: 15px;
+            cursor: pointer;
+            transition: left 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+          }
+          #btn div {
+            width: 35px;
+            height: 2px;
+            margin-bottom: 8px;
+            background-color: #00DFFC;
+            transition: transform 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91), opacity 500ms, background-color 250ms;
+          }
+          
+          #btn.active {
+            left: 230px;
+          }
+          #btn.active div {
+            background-color: #343838;
+          }
+          #btn.active #top {
+            transform: translateY(10px) rotate(-135deg);
+          }
+          #btn.active #middle {
+            opacity: 0;
+            transform: rotate(135deg);
+          }
+          #btn.active #bottom {
+            transform: translateY(-10px) rotate(-45deg);
+          }
+          
+          #box {
+            position: fixed;
+            z-index: 4;
+            overflow: auto;
+            top: 0px;
+            left: -275px;
+            width: 275px;
+            opacity: 0;
+            padding: 20px 0px;
+            height: 100%;
+            background-color: #f6f6f6;
+            color: #343838;
+            transition: all 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+          }
+          
+          #box.active {
+            left: 0px;
+            opacity: 1;
+          }
+          
+          #items {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          #items .item {
+            position: relative;
+            cursor: pointer;
+            font-size: 2em;
+            padding: 15px 30px;
+            transition: all 250ms;
+          }
+          #items .item:hover {
+            padding: 15px 45px;
+            background-color: rgba(52, 56, 56, 0.2);
+          }
+          
+          #btn, #btn * {
+            will-change: transform;
+          }
+          
+          #box {
+            will-change: transform, opacity;
+          }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <!-- <div class="logo">
-            <img id="logo" src="/Static/symbol-26228_1280.png" alt="">
-        </div> -->
+
+        <div id="btn">
+            <div id='top'></div>
+            <div id='middle'></div>
+            <div id='bottom'></div>
+        </div>
+        <div id="box">
+            <div id="items">
+                <div class="item">Item 1</div>
+                <div class="item">Item 2</div>
+                <div class="item">Item 3</div>
+                <div class="item">Item 4</div>
+                <div class="item">Item 5</div>
+            </div>
+        </div>
         <div>
-            <a style="text-decoration: none;" href="/"><h1>MedNexus: Solutions for healthcare</h1></a> 
+            <a  style="text-decoration: none;" href="/"><h1 id="t1">MedNexus | Home</h1></a> 
          </div>
-        <!-- <div>
-            <ul>
-                <li>Home</li>
-                <li>About</li>
-                <li>Diagnosis</li>
-                <li>Consultation</li>
-                <li>Contact</li>
-            </ul>
-        </div> -->
+      
     </nav>
+    <br><br><br>
     <div class="infoo">
         <div class="infopic">
             <img src="/static/boy-2027768.png" alt="">
@@ -181,6 +274,58 @@
             </div>
            
         </div>
+        <div class="container1">
+           <a href="/skincancer"> <div class="card">
+                <div class="cardtitle">
+                    <span>Skin Cancer</span>
+                </div>
+                <hr>
+                <div class="cardinfo">
+                    Skin cancer is the abnormal growth of skin cells that most often develops on skin exposed to the sun. But this common form of cancer can also occur on areas of your skin not ordinarily exposed to sunlight. Here we provide a diagnosis that will help you identify the type of skin cancer or if it is benign or malignant
+                </div>
+            </a>
+            </div>
+            <a href="/braintumor">
+                <div class="card">
+                    <div class="cardtitle">
+                    <span>Brain Tumor</span>
+                    </div>
+                    <hr>
+                    <div class="cardinfo">
+                        A Brain tumor is considered as one of the most aggressive diseases among children and adults. Every year, around 11,700 people are diagnosed with a brain tumor.  Proper treatment, planning, and accurate diagnostics should be implemented to improve the life expectancy of the patients. Here you can upload your MRI scans to identify the type or presence of brain tumor
+                    </div>
+                </a>
+        
+            </div>
+           
+        </div>
+        
+        <div class="container1">
+           <a href="/pneumonia"> <div class="card">
+                <div class="cardtitle">
+                    <span>Pneumonia</span>
+                </div>
+                <hr>
+                <div class="cardinfo">
+                    Heart disease refers to any condition affecting the cardiovascular system. There are several different types of heart disease, and they affect the heart and blood vessels in different ways. Coronary artery disease, also known as coronary heart disease, is the most common type of heart disease.
+                </div>
+            </a>
+            </div>
+            <a href="/leukemia">
+                <div class="card">
+                    <div class="cardtitle">
+                    <span>Leukemia</span>
+                    </div>
+                    <hr>
+                    <div class="cardinfo">
+                        Diabetes is a metabolic disease that causes high blood sugar. The hormone insulin moves sugar from the blood into your cells to be stored or used for energy. With diabetes, your body either doesn’t make enough insulin or can’t effectively use the insulin it does make. Untreated high blood sugar from diabetes can damage your nerves, eyes, kidneys, and other organs.
+                    </div>
+                </a>
+        
+            </div>
+           
+        </div>
+        
         <div class="container1">
             <a href="/breastcancer"> <div class="card">
                  <div class="cardtitle">
@@ -232,10 +377,10 @@
         </div>
         </div>
         <div class="container3">
-            <a href="/">
+            <a href="/malaria">
             <div class="card">
                 <div class="cardtitle">
-                    <span>Cervical Cancer</span>
+                    <span>Malaria</span>
                 </div>
                 <hr>
                 <div class="cardinfo">
@@ -259,5 +404,5 @@
     <div id="copyright" style="background-color: black; color: white; text-align: center;">
         Copyright &copy; Hanson Braganza. All rights reserved!
     </div>
-  
+  <script src="/static/nav.js"></script>
 </html>
