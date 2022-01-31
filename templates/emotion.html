@@ -81,7 +81,7 @@
     }
 
     .container1,
-    .container2 {
+    .container2, .container3 {
       display: flex;
 
 
@@ -264,6 +264,17 @@
          do not acquires the image cursor object */
       position: absolute;
       z-index: 34;
+      display: none;
+  }
+  .fat{
+    margin: auto 0%;
+    font-size: x-large;
+    color: white;
+    border: solid black;
+    margin-left: 15px;
+    border-radius: 10px;
+    padding: 10px 42px;
+    background: #0e1f2cd6;
   }
   </style>
 </head>
@@ -306,14 +317,33 @@
       <div style="padding-top: 0px; font-size: 40px;" class="info">Track your psycological state through remote video and audio sessions</div>
     </div>
   </div>
-  <button style="font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100%; border-radius: 10px;background: #94cae3; margin: 10px 0px; z-index:200; "
-          id="cstop">Stop Camera ❌</button>
-  <button style="display:none;font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100%; border-radius: 10px;background: #94cae3; margin: 10px 0px;"
+  <button onclick="vmouse()" style="font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 49%; border-radius: 10px;background: #94cae3; margin: 10px 0px; "
+         >Start Smile Exercise</button>
+  <button style="font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 50%; border-radius: 10px;background: #94cae3; margin: 10px 0px; z-index:200; "
+          id="cstop">Finish Exercise</button>
+  <button  style="display:none;font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100%; border-radius: 10px;background: #94cae3; margin: 10px 0px;"
   id="cstart-camera">Start Camera 📷</button>
-  <video style="display: none;" id="cvideo" width="100%" height="240" autoplay></video>
+  <div id="divid" style="display: none; background:url(/static/AdobeStock_328915018.jpeg); align-items:center"><video style="    display: inline;
+    padding: 15px;
+    background: b;
+    background: #0c1c28f0;
+    border-radius: 10px;
+    margin: 10px 20%;
+    margin-right: 10%;
+    border: solid black; " id="cvideo" width="14%" height="auto" autoplay></video>
+  <div class="fat">
+    <p>Smile: <span id="smilevisible"></span></p>
+    <p>Right: <span id="moveright"></span></p>
+    <p>Down: <span id="movedown"></span></p>
+    
+  </div>
+  <div class="fat">
+    <p>Left: <span id="moveleft"></span></p>
+    <p>Up: <span id="moveup"></span></p>
+    <p>Click: <span id="clickstatus"></span></p>
+  </div>
+</div>
         <canvas id="ccanvas" style="display: none;" width="320" height="240"></canvas>
-  <button onclick="vmouse()" style="font-size: larger; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100%; border-radius: 10px;background: #94cae3; margin: 10px 0px; "
-         >Start Smile Game</button>
   <!-- <img id="imgg" src="/Static/AdobeStock_328915018.jpeg" alt=""> -->
   <div style="background-image: url(/static/AdobeStock_328915018.jpeg); background-image: fixed;">
     <div class="container1">
@@ -373,7 +403,7 @@
         </div>
         <hr>
         <div id="content">
-          <p id="beforestats">Start your camera to start your video session.</p>
+          <p id="beforestats">Tell us about your day by clicking on the record button.</p>
           <div style="display: none;" id="stats" class="demo-container">
             <div id="placeholder" class="demo-placeholder"></div>
           </div>
@@ -383,9 +413,50 @@
 
       </div>
 
-
-
+      
     </div>
+    <button style="font-size: xx-large;  width: 95%; border-radius: 10px;background: #94cae3; margin: 10px 2.5%; "
+    id="stop">Generate Report</button>
+    <div class="container3">
+      <div style="width: 170%;" class="card">
+
+        <div style="text-align: center;" class="cardtitle">
+          <span>Mental Health Report</span>
+      </div>
+      <hr>
+      <div>
+        <div class="cardinfo">
+        <ul>
+          <li style="margin: 10px 20px;">
+            Video Session:
+            <div>
+              Age: <span id="age"></span>
+            </div>
+            <div>
+              Gender: <span id="gender"></span>
+            </div>
+           
+            <div>
+              Dominant Emotion: <span id="doemo"></span>
+            </div>
+          </li>
+          <li style="margin: 10px 20px;">
+            Audio Session:
+            <div>
+              Vocal Sentiment: <span id="finalsenti"></span>
+            </div>
+          </li>
+          <li style="margin: 10px 20px;">
+            Final Result: <span id="rep"></span>
+
+          </li>
+        </ul>
+      </div>
+         
+      </div>
+    
+
+      </div>
     </div>
     <footer id="copyright" style="background-color: black; color: white; text-align: center;">
   
@@ -394,9 +465,45 @@
   </footer>
   <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
     <script>
+      function outspeak(speakinput){
+        startSpeakTextAsyncButton = document.getElementById("startSpeakTextAsyncButton");
+            subscriptionKey = document.getElementById("subscriptionKey");
+            serviceRegion = document.getElementById("serviceRegion");
+     
+              if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
+                alert("Please enter your Microsoft Cognitive Services Speech subscription key!");
+                startSpeakTextAsyncButton.disabled = false;
+                return;
+              }
+              var speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
+      
+              synthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig);
+      
+              let inputText = speakinput;
+              synthesizer.speakTextAsync(
+                inputText,
+                function (result) {
+                 
+                 
+                  window.console.log(result);
+                  synthesizer.close();
+                  synthesizer = undefined;
+                },
+                function (err) {
+             
+                  
+                  window.console.log(err);
+      
+                  synthesizer.close();
+                  synthesizer = undefined;
+              });
+         
+  
+
+      }
       var score=0;
       var evalu=0;
-
+      var a,b,c,d,e,f,g,h=0
       let camera_button = document.querySelector("#start-camera");
       let video = document.querySelector("#video");
       let click_button = document.querySelector("#click-photo");
@@ -408,11 +515,10 @@
         let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
         video.srcObject = stream;
         video.style.display = "block"
-        setTimeout(del, 3000)
-        function del(){
+        
           beforestats.style.display = "none"
           stats.style.display = "block"
-        }
+      
 
         stopcam.addEventListener('click', async function () {
           stream.getTracks().forEach(function (track) {
@@ -422,6 +528,23 @@
             beforestats.style.display = "block"
             clearInterval(intervall);
 
+            function tp(){
+              if(a > b && a> c){
+                console.log(a)
+                score = 0
+              }
+              if(b > a && b> c){
+               console.log(b)
+                score = 1
+              }
+              if(c > b && c> a){
+               console.log(c)
+                score = 3
+              }
+        
+        console.log(score)
+            }
+            tp()
           });
         });
 
@@ -486,9 +609,12 @@
           .done(function (data) {
             // Show formatted JSON on webpage.
 
-            console.log(JSON.parse(JSON.stringify(data))[0].faceAttributes.headPose)
             var ages = JSON.parse(JSON.stringify(data))[0].faceAttributes.age
             var genders = JSON.parse(JSON.stringify(data))[0].faceAttributes.gender
+            var ag = document.getElementById("age")
+      var ge = document.getElementById("gender")
+      ag.innerHTML = ages
+      ge.innerHTML = genders
             var emo1 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.neutral
             var emo2 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.sadness
             var emo3 = JSON.parse(JSON.stringify(data))[0].faceAttributes.emotion.happiness
@@ -520,53 +646,34 @@
               $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
             });
 
-           var a =  Math.max(emo1, emo2, emo3, emo4, emo4, emo5, emo6, emo7, emo8)
-           if(a == emo2){
-           
-              startSpeakTextAsyncButton = document.getElementById("startSpeakTextAsyncButton");
-              subscriptionKey = document.getElementById("subscriptionKey");
-              serviceRegion = document.getElementById("serviceRegion");
-              
-             
-               
-               
-        
-                if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
-                  alert("Please enter your Microsoft Cognitive Services Speech subscription key!");
-                  startSpeakTextAsyncButton.disabled = false;
-                  return;
-                }
-                var speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
-        
-                synthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig);
-        
-                let inputText = "Hello, Dr. Medico here, How can I help you?";
-                synthesizer.speakTextAsync(
-                  inputText,
-                  function (result) {
-                   
-                   
-                    window.console.log(result);
-                    synthesizer.close();
-                    synthesizer = undefined;
-                  },
-                  function (err) {
-               
-                    
-                    window.console.log(err);
-        
-                    synthesizer.close();
-                    synthesizer = undefined;
-                });
-             
-        
-              
-            };
-           
-          })
-
+           var v =  Math.max(emo1, emo2, emo3, emo4, emo4, emo5, emo6, emo7, emo8)
+           if(v == emo2){
+            var doemo = document.getElementById("doemo")
+            doemo.innerHTML = "Sadness"
+            $.ajax({
+              url: "https://v2.jokeapi.dev/joke/Any?format=txt",
+              type: "GET",
+            })
+              .done(function (responseText) {
+                console.log(responseText)
+            outspeak("Hey!! Is that sadness I see on your face? Here's a joke to cheer you up: " +responseText)
+              })
+             b=b+1
+          };
+          if(v == emo1){
+            var doemo = document.getElementById("doemo")
+        doemo.innerHTML = "Neutral"
+            a=a+1
+          }
+          else if(v == emo3){
+            oo = "Hey!! Glad to see you happy. Keep up the positivity"
+            outspeak(oo)
+            c=c+1
+            var doemo = document.getElementById("doemo")
+            doemo.innerHTML = "Happiness"
+          }
           
-
+        })
           .fail(function (jqXHR, textStatus, errorThrown) {
             // Display error message.
             var errorString = (errorThrown === "") ?
@@ -577,9 +684,130 @@
                 jQuery.parseJSON(jqXHR.responseText).error.message;
             alert(errorString);
           });
+      }
+     
+      
+
+      document.addEventListener("DOMContentLoaded", function () {
+        startRecognizeOnceAsyncButton = document.getElementById("startRecognizeOnceAsyncButton");
+        subscriptionKey = document.getElementById("subscriptionKey");
+        serviceRegion = document.getElementById("serviceRegion");
+        phraseDiv = document.getElementById("phraseDiv");
+
+        startRecognizeOnceAsyncButton.addEventListener("click", function () {
+            startRecognizeOnceAsyncButton.disabled = true;
+            phraseDiv.innerHTML = "";
+
+            if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
+                alert("Please enter your Microsoft Cognitive Services Speech subscription key!");
+                return;
+            }
+            var speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
+
+            speechConfig.speechRecognitionLanguage = "en-US";
+            var audioConfig = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
+            recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
+
+            recognizer.recognizeOnceAsync(
+                function (result) {
+                    startRecognizeOnceAsyncButton.disabled = false;
+                    phraseDiv.innerHTML += result.text;
+                    window.console.log(result);
+                    console.log(result.privText);
+                    texti = result.privText;
+
+
+
+                    var subscriptionKey2 = "41f2e3d364df44fa8ef1be618b54e0ec";
+                    var uriBase2 =
+                        "https://textanalyti.cognitiveservices.azure.com//text/analytics/v3.2-preview.1/sentiment?opinionMining=true";
+
+                    $.ajax({
+                        url: uriBase2,
+
+                        // Request headers.
+                        beforeSend: function (xhrObj) {
+                            xhrObj.setRequestHeader("Content-Type", "application/json");
+                            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey2);
+                        },
+
+                        type: "POST",
+
+                        // Request body.
+                        data: '{ documents: [{ id: "1", text: "' + texti + '" }]}'
+                    })
+
+                        .done(function (data) {
+                            // Show formatted JSON on webpage.
+                            console.log(JSON.parse(JSON.stringify(data, null, 2)).documents[0].sentiment)
+                            var audio = JSON.parse(JSON.stringify(data, null, 2)).documents[0].sentiment
+                            var aud = document.getElementById('sentiment');
+                            var audi = document.getElementById('finalsenti');
+                            aud.innerHTML = audio;
+                            audi.innerHTML = audio;
+                            if( audio === "positive"){
+                                evalu = 3;
+                            }
+                            if( audio === "negative"){
+                                evalu = 1;
+                            }
+                            if( audio === "neutral" || audio === "mixed"){
+                                evalu = 0;
+                            }
+                            alert("Success")
+                            console.log(evalu)
+                            console.log(score+ evalu);
+    if(score + evalu == 6){
+        var final = document.getElementById('rep')
+        final.innerHTML = "You were very happy today. Keep up the positivity!"
+    }
+    if(score + evalu == 0){
+        var final = document.getElementById('rep')
+        final.innerHTML = "You showed a mix of different emotions. It was difficult to keep track of your overall mood this session"
+    }
+    if(score + evalu== 3){
+        var final = document.getElementById('rep')
+        final.innerHTML = "You sound a little happy today. Keep up the positivity!"
+    }
+    if(score + evalu == 1){
+        var final = document.getElementById('rep')
+        final.innerHTML = "You sound a little dull today. Try our services mentioned below to cheer up"
+    }
+    if(score + evalu == 2){
+        var final = document.getElementById('rep')
+        final.innerHTML = "You showed an altered perception of reality, including delusional thoughts, hallucinations, and disorganised speech and behavior. Please have a look at the stress relieving services mentioned below"
+    }
+                        })
+
+                        .fail(function (jqXHR, textStatus, errorThrown) {
+                            // Display error message.
+                            var errorString = (errorThrown === "") ?
+                                "Error. " : errorThrown + " (" + jqXHR.status + "): ";
+                            errorString += (jqXHR.responseText === "") ?
+                                "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
+                                    jQuery.parseJSON(jqXHR.responseText).message :
+                                    jQuery.parseJSON(jqXHR.responseText).error.message;
+                            alert(errorString);
+                        });
+
+
+
+                    recognizer.close();
+                    recognizer = undefined;
+                },
+                function (err) {
+                    startRecognizeOnceAsyncButton.disabled = false;
+                    phraseDiv.innerHTML += err;
+                    window.console.log(err);
+
+                    recognizer.close();
+                    recognizer = undefined;
+                });
+        });
         
-      };
-    </script>
+        
+    });
+        </script>
     <script>
       function vmouse(){
         var px, py;
@@ -590,18 +818,21 @@
               let click_button = document.querySelector("#cclick-photo");
               let canvas = document.querySelector("#ccanvas");
               let stopcam = document.querySelector("#cstop");
-              camera_button.style.display="block"
-              stopcam.style.display="block"
+              let divid = document.querySelector("#divid");
+              camera_button.style.display="inline"
+              cursor.style.display= "inline"
               camera_button.addEventListener('click', async function () {
                 let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
                 video.srcObject = stream;
-                video.style.display = "block"
+                divid.style.display = "flex"
              
         
                 stopcam.addEventListener('click', async function () {
                   stream.getTracks().forEach(function (track) {
                     track.stop();
-                    cvideo.style.display = "none"
+                    camera_button.style.display="none"
+                    divid.style.display = "none"
+                    cursor.style.display= "none"
                     clearInterval(intervall);
         
                   });
@@ -665,46 +896,54 @@
         
                   .done(function (data) {
                     // Show formatted JSON on webpage.
-                    console.log(data)
-                    console.log(JSON.parse(JSON.stringify(data))[0].faceAttributes.smile)
-                    console.log(JSON.parse(JSON.stringify(data))[0].faceAttributes.occlusion.mouthOccluded)
-                    var m = JSON.parse(JSON.stringify(data))[0].faceAttributes.smile
-                    var r = JSON.parse(JSON.stringify(data))[0].faceAttributes.headPose.roll
-                    var p = JSON.parse(JSON.stringify(data))[0].faceAttributes.headPose.pitch
-                    console.log(p)
-                   if(r>8){
-                       px = px + 100
-                    cursor.style.left = (px) + "px";
+                    
+                    
+                    var smile = JSON.parse(JSON.stringify(data))[0].faceAttributes.smile
+                    var roll = JSON.parse(JSON.stringify(data))[0].faceAttributes.headPose.roll
+                    var pitch = JSON.parse(JSON.stringify(data))[0].faceAttributes.headPose.pitch
+                    var yaw = JSON.parse(JSON.stringify(data))[0].faceAttributes.headPose.pitch
+                    console.log("pitch " + pitch)
+                    console.log("roll " + roll)
+                    console.log("yaw " +yaw)
+                    console.log("smile " + smile)
+                   if(smile > 0.5){
+                    if(roll > 8){
+                      px = px + 100
+                   cursor.style.left = (px) + "px";
 
-                   }
-                   if(p<-5){
-                       py = py + 20
-                       cursor.style.top = (py) + "px";
-                   }
-                   if(p<-8){
-                       py = py + 40
-                       cursor.style.top = (py) + "px";
-                   }
-                   if(p<-10){
-                       py = py + 60
-                       cursor.style.top = (py) + "px";
-                   }
-                   if(p<-15){
-                       py = py + 80
-                       cursor.style.top = (py) + "px";
-                   }
-                   if(p<-20){
-                       py = py + 100
-                       cursor.style.top = (py) + "px";
-                   }
-                   if(m > 0.5)
-                   {
-                    var tmp = document.elementFromPoint(px,py); 
-                   
-                    tmp.click();
-                   }
-        
+                  }
+                  if(pitch < -5){
+                      py = py + 20
+                      cursor.style.top = (py) + "px";
+                  }
+                  if(pitch< -8){
+                      py = py + 40
+                      cursor.style.top = (py) + "px";
+                  }
+                  if(pitch<-10){
+                      py = py + 60
+                      cursor.style.top = (py) + "px";
+                  }
+                  if(pitch<-15){
+                      py = py + 80
+                      cursor.style.top = (py) + "px";
+                  }
+                  if(pitch<-20){
+                      py = py + 100
+                      cursor.style.top = (py) + "px";
+                  }
+                 if(roll < -8){
+                  var tmp = document.elementFromPoint(px, py); 
                   
+                  tmp.click();
+                  px, py = 0
+                  
+                 }
+       
+                   }
+                else{
+                  console.log("not smiling")
+                }
                       
                
                    
@@ -725,134 +964,6 @@
                 
               };
       }
-
-
-
-
-
-      document.addEventListener("DOMContentLoaded", function () {
-        startRecognizeOnceAsyncButton = document.getElementById("startRecognizeOnceAsyncButton");
-        subscriptionKey = document.getElementById("subscriptionKey");
-        serviceRegion = document.getElementById("serviceRegion");
-        phraseDiv = document.getElementById("phraseDiv");
-
-        startRecognizeOnceAsyncButton.addEventListener("click", function () {
-            startRecognizeOnceAsyncButton.disabled = true;
-            phraseDiv.innerHTML = "";
-
-            if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
-                alert("Please enter your Microsoft Cognitive Services Speech subscription key!");
-                return;
-            }
-            var speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
-
-            speechConfig.speechRecognitionLanguage = "en-US";
-            var audioConfig = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
-            recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
-
-            recognizer.recognizeOnceAsync(
-                function (result) {
-                    startRecognizeOnceAsyncButton.disabled = false;
-                    phraseDiv.innerHTML += result.text;
-                    window.console.log(result);
-                    console.log(result.privText);
-                    texti = result.privText;
-
-
-
-                    var subscriptionKey2 = "41f2e3d364df44fa8ef1be618b54e0ec";
-                    var uriBase2 =
-                        "https://textanalyti.cognitiveservices.azure.com//text/analytics/v3.2-preview.1/sentiment?opinionMining=true";
-
-                    $.ajax({
-                        url: uriBase2,
-
-                        // Request headers.
-                        beforeSend: function (xhrObj) {
-                            xhrObj.setRequestHeader("Content-Type", "application/json");
-                            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey2);
-                        },
-
-                        type: "POST",
-
-                        // Request body.
-                        data: '{ documents: [{ id: "1", text: "' + texti + '" }]}'
-                    })
-
-                        .done(function (data) {
-                            // Show formatted JSON on webpage.
-                            console.log(JSON.parse(JSON.stringify(data, null, 2)).documents[0].sentiment)
-                            var audio = JSON.parse(JSON.stringify(data, null, 2)).documents[0].sentiment
-                            var aud = document.getElementById('sentiment');
-                            aud.innerHTML = audio;
-                            if( audio === "positive"){
-                                evalu = 3;
-                            }
-                            if( audio === "negative"){
-                                evalu = 1;
-                            }
-                            if( audio === "neutral" || audio === "mixed"){
-                                evalu = 0;
-                            }
-                            alert("Success")
-                            console.log(evalu)
-                            console.log(score+ evalu);
-    if(score + evalu == 6){
-        var final = document.getElementById('rep')
-        final.innerHTML = "You were very happy today. Keep up the positivity!"
-    }
-    if(score + evalu == 0){
-        var final = document.getElementById('rep')
-        final.innerHTML = "You showed a mix of different emotions. It was difficult to keep track of your overall mood this session"
-    }
-    if(score + evalu== 3){
-        var final = document.getElementById('rep')
-        final.innerHTML = "You sound a little happy today. Keep up the positivity!"
-    }
-    if(score + evalu == 1){
-        var final = document.getElementById('rep')
-        final.innerHTML = "You sound a little dull today. Try our services mentioned below to cheer up"
-    }
-    if(score + evalu == 2){
-        var final = document.getElementById('rep')
-        final.innerHTML = "You showed an altered perception of reality, including delusional thoughts, hallucinations, and disorganised speech and behavior. Please have a look at the stress relieving services mentioned below"
-    }
-                        })
-
-                        .fail(function (jqXHR, textStatus, errorThrown) {
-                            // Display error message.
-                            var errorString = (errorThrown === "") ?
-                                "Error. " : errorThrown + " (" + jqXHR.status + "): ";
-                            errorString += (jqXHR.responseText === "") ?
-                                "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
-                                    jQuery.parseJSON(jqXHR.responseText).message :
-                                    jQuery.parseJSON(jqXHR.responseText).error.message;
-                            alert(errorString);
-                        });
-
-
-
-                    recognizer.close();
-                    recognizer = undefined;
-                },
-                function (err) {
-                    startRecognizeOnceAsyncButton.disabled = false;
-                    phraseDiv.innerHTML += err;
-                    window.console.log(err);
-
-                    recognizer.close();
-                    recognizer = undefined;
-                });
-        });
-        
-        if (!!window.SpeechSDK) {
-            SpeechSDK = window.SpeechSDK;
-            startRecognizeOnceAsyncButton.disabled = false;
-
-            document.getElementById('content').style.display = 'block';
-            document.getElementById('warning').style.display = 'none';
-        }
-    });
     </script>
 </body>
 
