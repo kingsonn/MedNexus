@@ -332,15 +332,15 @@
     margin-right: 10%;
     border: solid black; " id="cvideo" width="14%" height="auto" autoplay></video>
   <div class="fat">
-    <p>Smile: <span id="smilevisible"></span></p>
-    <p>Right: <span id="moveright"></span></p>
-    <p>Down: <span id="movedown"></span></p>
+    <p>Smile: <span id="smilevisible">Not Visible</span></p>
+    <p>Right: <span id="moveright">No</span></p>
+    <p>Down: <span id="movedown">No</span></p>
     
   </div>
   <div class="fat">
-    <p>Left: <span id="moveleft"></span></p>
-    <p>Up: <span id="moveup"></span></p>
-    <p>Click: <span id="clickstatus"></span></p>
+    <p>Left: <span id="moveleft">Not Available</span></p>
+    <p>Up: <span id="moveup"> Not Available</span></p>
+    <p>Click: <span id="clickstatus">No</span></p>
   </div>
 </div>
         <canvas id="ccanvas" style="display: none;" width="320" height="240"></canvas>
@@ -503,7 +503,7 @@
       }
       var score=0;
       var evalu=0;
-      var a,b,c,d,e,f,g,h=0
+      var a=0,b=0,c=0,d,e,f,g,h=0
       let camera_button = document.querySelector("#start-camera");
       let video = document.querySelector("#video");
       let click_button = document.querySelector("#click-photo");
@@ -528,23 +528,8 @@
             beforestats.style.display = "block"
             clearInterval(intervall);
 
-            function tp(){
-              if(a > b && a> c){
-                console.log(a)
-                score = 0
-              }
-              if(b > a && b> c){
-               console.log(b)
-                score = 1
-              }
-              if(c > b && c> a){
-               console.log(c)
-                score = 3
-              }
-        
-        console.log(score)
-            }
-            tp()
+          
+          
           });
         });
 
@@ -645,7 +630,7 @@
 
               $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
             });
-
+            
            var v =  Math.max(emo1, emo2, emo3, emo4, emo4, emo5, emo6, emo7, emo8)
            if(v == emo2){
             var doemo = document.getElementById("doemo")
@@ -658,21 +643,34 @@
                 console.log(responseText)
             outspeak("Hey!! Is that sadness I see on your face? Here's a joke to cheer you up: " +responseText)
               })
-             b=b+1
+             b= b + 1
           };
           if(v == emo1){
             var doemo = document.getElementById("doemo")
         doemo.innerHTML = "Neutral"
-            a=a+1
+            
+           a = a + 1
+           
           }
           else if(v == emo3){
             oo = "Hey!! Glad to see you happy. Keep up the positivity"
             outspeak(oo)
-            c=c+1
+            c= c+1
             var doemo = document.getElementById("doemo")
             doemo.innerHTML = "Happiness"
           }
-          
+          if(a > b && a> c){
+           
+            score = 0
+          }
+          if(b > a && b> c){
+           console.log(b)
+            score = 1
+          }
+          if(c > b && c> a){
+           console.log(c)
+            score = 3
+          }
         })
           .fail(function (jqXHR, textStatus, errorThrown) {
             // Display error message.
@@ -906,43 +904,53 @@
                     console.log("roll " + roll)
                     console.log("yaw " +yaw)
                     console.log("smile " + smile)
+                    var sm = document.getElementById("smilevisible")
+                    var re = document.getElementById("moveright")
+                    var dw = document.getElementById("movedown")
                    if(smile > 0.5){
+                     sm.innerHTML= "Visible"
                     if(roll > 8){
                       px = px + 100
                    cursor.style.left = (px) + "px";
-
+                        re.innerHTML = "Yes"  
                   }
-                  if(pitch < -5){
+                  if(pitch < -3){
                       py = py + 20
                       cursor.style.top = (py) + "px";
+                      dw.innerHTML="Small"
                   }
-                  if(pitch< -8){
+                  if(pitch< -5){
                       py = py + 40
                       cursor.style.top = (py) + "px";
+                      dw.innerHTML="Medium"
                   }
-                  if(pitch<-10){
+                  if(pitch<-8){
                       py = py + 60
                       cursor.style.top = (py) + "px";
+                      dw.innerHTML="Large"
                   }
-                  if(pitch<-15){
+                  if(pitch<-10){
                       py = py + 80
                       cursor.style.top = (py) + "px";
+                      dw.innerHTML="X-Large"
                   }
-                  if(pitch<-20){
+                  if(pitch<-15){
                       py = py + 100
                       cursor.style.top = (py) + "px";
+                      dw.innerHTML="XX-Large"
                   }
-                 if(roll < -8){
+                 if(roll < -5){
                   var tmp = document.elementFromPoint(px, py); 
                   
                   tmp.click();
                   px, py = 0
                   
                  }
+                 
        
                    }
                 else{
-                  console.log("not smiling")
+                  sm.innerHTML = "Not Visible"
                 }
                       
                
