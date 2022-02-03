@@ -22,7 +22,7 @@ var phraseDiv;
             var speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
             synthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig);
             speechConfig;
-            let inputText = "Hello, Dr. Medico here, How can I help you?";
+            let inputText = "Hello, I'm Dr. Medico, How can I help you?";
         synthesizer.speakTextAsync(
       inputText,
       function (result) {
@@ -68,7 +68,7 @@ var phraseDiv;
                 speechConfig.speechRecognitionLanguage = "en-US";
                 var audioConfig  = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
                 recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
-                setTimeout( speakagain, 3000)
+                
                 recognizer.recognizeOnceAsync(
                     
                   function (result) {
@@ -77,7 +77,7 @@ var phraseDiv;
                     window.console.log(result);
                     console.log(url+result.privText);
                     
-                    setTimeout(change, 5000)
+                    change()
                     function change(){
                         client.get(url+result.privText, function(response) {
                             if(JSON.parse(response).prediction.topIntent === "accessWebsite") {
@@ -87,7 +87,7 @@ var phraseDiv;
                                 window.location.href = ("https://mexus.azurewebsites.net/mentalhealth")
                             }
                             if(JSON.parse(response).prediction.topIntent === "accessconsult") {
-                                window.location.href = ("https://mexus.azurewebsites.net/consultation")
+                                window.location.href = ("https://mexus.azurewebsites.net/bdonation")
                             }
                             if(JSON.parse(response).prediction.topIntent === "emotiondetect") {
                                 window.location.href = ("https://mexus.azurewebsites.net/emotion")
