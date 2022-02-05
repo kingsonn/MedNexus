@@ -29,5 +29,7 @@
         "env.bak{,/**}",
         "venv.bak{,/**}",
         ".vscode{,/**}"
-    ]
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/65913e81-3b30-4e34-8e67-cda4fd92b1f9/resourceGroups/imaginecup/providers/Microsoft.Web/sites/mexus",
+    "appService.deploySubpath": "."
 }

@@ -20,9 +20,6 @@ camera_button.addEventListener('click', async function () {
     });
 
     const intervall = setInterval(processImage, 3000);
-  
-    
-
 });
 function getMax(obj){
     return Math.max.apply(null,Object.keys(obj));
