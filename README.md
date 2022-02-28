@@ -4,7 +4,7 @@
 <p>Youtube Demo Link: https://youtu.be/76ybSRPKMIs</p>
 
 <h2>To run the app on local device</h2>
-<p>Clone is repository in your terminal</p>
+<p>Clone the repository in your terminal</p>
 
 `pip install -r requirements.txt`
 <br><br>
